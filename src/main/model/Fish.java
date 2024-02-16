@@ -1,10 +1,8 @@
 package model;
 
-// Represents a fish with a unique char
+// Represents a fish with a unique char, an int weight, and whether it is the largest
 public class Fish {
     private int weight;
-//    private String dateCaught;
-//    private boolean isCaught;
     private boolean isLargest;
     private char letter;
 
@@ -12,7 +10,6 @@ public class Fish {
     public Fish(char letter) {
         this.letter = letter;
         this.weight = 0;
-        //this.isCaught = false;
         this.isLargest = false;
     }
 

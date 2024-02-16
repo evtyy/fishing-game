@@ -3,29 +3,31 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents the total collection of fishes caught on various days
+// Represents the total collection of fishes caught on various rounds
 // A list of dates (type String) -- what should be seen
 public class TotalRounds {
-    private List<Fishes> collection;
+    private List<Fishes> totalFish;
 
     //EFFECTS: constructs an empty list of fish
     public TotalRounds() {
-        collection = new ArrayList<>();
+        totalFish = new ArrayList<>();
     }
 
     //getter
-    public List<Fishes> getCollection() {
-        return collection;
+    public List<Fishes> getTotalFish() {
+        return totalFish;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds given list of fish to list of fishes, totalFish
     public void addFishes(Fishes fishes) {
-        collection.add(fishes);
+        totalFish.add(fishes);
     }
 
     //
     // EFFECTS: get list of fishes given dateCaught; null if not found
     public List<Fish> getFishesFromDate(String date) {
-        for (Fishes f: collection) {
+        for (Fishes f: totalFish) {
             if (f.getDateCaught().equals(date)) {
                 return f.getFishList();
             }
