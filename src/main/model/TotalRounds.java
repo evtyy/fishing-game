@@ -3,8 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents the total collection of fishes caught on various rounds
-// A list of dates (type String) -- what should be seen
+// Represents the total list of fishes caught on multiple rounds
 public class TotalRounds {
     private List<Fishes> totalFish;
 

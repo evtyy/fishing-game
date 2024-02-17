@@ -132,9 +132,10 @@ public class TerminalGame {
         return false;
     }
 
+    // REQUIRES: fishesCaught is non-empty
     // MODIFIES: this, fishesCaught, fishesTotal
     // EFFECTS: displays the option to release fish that were just caught; if no fish with corresponding
-    //          weight found, tell the player
+    //          weight found, notify the player
     public void releaseFishOption() {
         System.out.println("Would you like to release fish? y or n");
         char playerInput = input.next().charAt(0);

@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-// Represents the list of fishes caught on one day
+// Represents the list of fishes caught in one round, with total weight and date caught
 public class Fishes {
     private List<Fish> fishList;
     private int totalWeight;
