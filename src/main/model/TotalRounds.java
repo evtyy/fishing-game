@@ -24,16 +24,4 @@ public class TotalRounds {
         totalFish.add(fishes);
     }
 
-    //
-    // EFFECTS: get list of fishes given dateCaught; null if not found
-    public List<Fish> getFishesFromDate(String date) {
-        for (Fishes f: totalFish) {
-            if (f.getDateCaught().equals(date)) {
-                return f.getFishList();
-            }
-        }
-        return null;
-    }
-
-
 }

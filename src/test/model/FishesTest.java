@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FishesTest {
@@ -95,5 +97,13 @@ public class FishesTest {
         fishList.addFish(f2);
         int sum = f1.getWeight() + f2.getWeight();
         assertEquals(sum, fishList.getTotalWeight());
+    }
+
+    @Test
+    void testGetDateCaught() {
+        Date date = new Date();
+        String formattedDate = date.toString();
+        fishList.setDateCaught(formattedDate);
+        assertEquals(formattedDate, fishList.getDateCaught());
     }
 }

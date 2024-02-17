@@ -76,11 +76,4 @@ public class Fishes {
         return false;
     }
 
-    //    public Fish getFishByWeight(int weight) {
-//        for (Fish f: fishList) {
-//            if (weight == f.getWeight()) {
-//                return f;
-//            }
-//    }
-
 }
