@@ -2,16 +2,24 @@ package ui;
 
 import model.Fish;
 import model.Fishes;
+import model.Game;
 import model.TotalRounds;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 // Represents the terminal/ui of the game
 public class TerminalGame {
+    private static final String JSON_STORE = "./data/game.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
     private Scanner input;
-    private List<Integer> randomWeights;
+    private Game game;
     private TotalRounds totalRounds;
-    private Fishes fishesTotal;
     private Fishes fishesCaught;
     private List<String> allSummaries;
     private boolean playAgain;
@@ -23,42 +31,83 @@ public class TerminalGame {
 
     // EFFECTS: starts the terminal of the game
     public TerminalGame() {
-        start();
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        fishesCaught = new Fishes();
+        totalRounds = new TotalRounds();
+        run();
     }
 
     // EFFECTS: initializes the fishes with random weights and chars in the pond
-    public void start() {
+    public void newGame() {
         input = new Scanner(System.in);
-        randomWeights = generateRandomIntegers(TOTAL_FISH, MIN_WEIGHT, MAX_WEIGHT);
-        fishesTotal = new Fishes();
-        fishesCaught = new Fishes();
-        totalRounds = new TotalRounds();
-        allSummaries = new ArrayList<>();
         playAgain = true;
 
-        initFishesInPond();
-        setRandomWeights();
-        fishesTotal.getLargest();
-
         while (playAgain) {
+            game = new Game();
             playRound(MAX_TRIES);
             displayResults();
             releaseFishOption();
-            totalRounds.addFishes(fishesCaught);
+            totalRounds.addListOfFishes(fishesCaught);
             printWeights();
             playAgain = playAgainOption(); // if true, play again
             fishesCaught = new Fishes(); // resets list of fishesCaught
         }
         printAllRounds();
+        //saveOption();
     }
 
-    // MODIFIES: this
-    // EFFECTS: creates a list of fish of the same size as randomWeights and assigns a random char
-    public void initFishesInPond() {
-        for (int i = 0; i < randomWeights.size(); i++) {
-            fishesTotal.addFish(new Fish(generateRandomChar()));
+    public void run() {
+        boolean quitGame = false;
+        String command = null;
+        input = new Scanner(System.in);
+
+        while (!quitGame) {
+            startingMenu();
+            command = input.next();
+            command = command.toLowerCase();
+
+            if (command.equals("q")) {
+                quitGame = true;
+            } else {
+                processCommand(command);
+            }
         }
     }
+
+    private void processCommand(String command) {
+        if (command.equals("l")) {
+            loadGame();
+        } else if (command.equals("n")) {
+            newGame();
+        } else if (command.equals("s")) {
+            saveGame();
+        } else if (command.equals("p")) {
+            printAllRounds();
+        } else if (command.equals("d")) {
+            printSummary();
+        }
+    }
+
+
+    private void startingMenu() {
+        System.out.println("\nSelect from:");
+        System.out.println("\tn -> new game");
+        System.out.println("\tl -> load game");
+        System.out.println("\ts -> save game");
+        System.out.println("\tp -> see collection");
+        System.out.println("\td -> see collection");
+        System.out.println("\tq -> quit game");
+    }
+
+//    private void saveOption() {
+//        System.out.println("\nSave game?");
+//        System.out.println("\tyes -> save");
+//        System.out.println("\tno -> don't save");
+//    }
+
+
+
 
     // MODIFIES: this, fishesCaught, fishesTotal
     // EFFECTS: conducts a round of the game
@@ -67,15 +116,15 @@ public class TerminalGame {
         Date date = new Date();
         fishesCaught.setDateCaught(date.toString());
         for (int i = 0; i < maxTries; i++) {
-            int fishAvail = fishesTotal.getFishList().size();
+            int fishAvail = game.getFishesTotal().getFishList().size();
             int randomIndex = random.nextInt(fishAvail);
-            Fish currentFish = fishesTotal.getFishList().get(randomIndex);
+            Fish currentFish = game.getFishesTotal().getFishList().get(randomIndex);
             System.out.println("Type the character for the fish: " + currentFish.getLetter());
             char playerInput = input.next().charAt(0);
 
             if (playerInput == currentFish.getLetter()) {
                 fishesCaught.addFish(currentFish);
-                fishesTotal.getFishList().remove(randomIndex);
+                game.getFishesTotal().getFishList().remove(randomIndex);
                 System.out.println("You caught the fish with weight " + currentFish.getWeight() + " lb!");
                 if (currentFish.isLargest()) {
                     System.out.println("Largest fish caught!");
@@ -84,6 +133,7 @@ public class TerminalGame {
                 System.out.println("The fish swam away!");
             }
         }
+        //fishesCaught.calcTotalWeight();
     }
 
     // EFFECTS: displays the results of a round
@@ -103,20 +153,13 @@ public class TerminalGame {
         for (Fish f: fishesCaught.getFishList()) {
             summary.append("Fish caught with weight: ").append(f.getWeight()).append(" lb\n");
         }
-        addRoundSummary(summary.toString());
         return summary.toString();
-    }
-
-    // MODIFIES: this
-    // EFFECTS: adds round summary to list of summaries
-    public void addRoundSummary(String summary) {
-        allSummaries.add(summary);
     }
 
     // EFFECTS: prints the summaries of each round played in one session
     public void printAllRounds() {
         System.out.println("All rounds played this session:");
-        for (String summary: allSummaries) {
+        for (String summary: totalRounds.getAllSummaries()) {
             System.out.println(summary);
         }
     }
@@ -142,64 +185,69 @@ public class TerminalGame {
         if (playerInput == 'y') {
             System.out.println("Release fish with weight: ");
             int releaseWeight = input.nextInt();
-
             //a copy of fishesCaught to iterate with
             List<Fish> fishesCaughtCopy = new ArrayList<>(fishesCaught.getFishList());
-
-            for (Fish f: fishesCaughtCopy) {
+            boolean fishReleased = false;
+            for (Fish f : fishesCaughtCopy) {
                 if (releaseWeight == f.getWeight()) {
                     fishesCaught.releaseFish(f);
-                    fishesTotal.addFish(f); //return fish to pond
+                    game.getFishesTotal().addFish(f); //return fish to pond
                     System.out.println("Fish with weight " + releaseWeight + " released");
-                    printRoundSummary();
+                    fishReleased = true;
                     releaseFishOption();
-                    return;
+                    break;
                 }
             }
-            System.out.println("No fish with weight " + releaseWeight + " found");
-            releaseFishOption();
+            if (!fishReleased) {
+                System.out.println("No fish with weight " + releaseWeight + " found");
+                releaseFishOption();
+            }
         }
+        //fishesCaught.calcTotalWeight(); // recalc after release
+        totalRounds.addRoundSummary(printRoundSummary());
     }
 
     // EFFECTS: prints fish weights of fish left in pond (including released)
     public void printWeights() {
-        fishesTotal.sortFishByWeight();
+        //fishesTotal.sortFishByWeight();
         System.out.println("Fish left in pond: ");
-        for (Fish f : fishesTotal.getFishList()) {
+        for (Fish f : game.getFishesTotal().getFishList()) {
             System.out.println("Fish with weight: " + f.getWeight() + " lb");
         }
     }
 
-    // MODIFIES: fishesTotal
-    // EFFECTS: randomly assigns a weight to each fish in pond
-    public void setRandomWeights() {
-        for (int i = 0; i < fishesTotal.getFishList().size(); i++) {
-            fishesTotal.getFishList().get(i).setWeight(randomWeights.get(i));
+    private void printSummary() {
+        System.out.println("All rounds played:");
+        List<Fish> fishes = fishesCaught.getFishList();
+        for (Fish f: fishes) {
+            System.out.println(f);
         }
+    }
+
+    private void saveGame() {
+//        System.out.println("Set save file name?");
+//        char playerInput = input.next().charAt(0);
+        try {
+            jsonWriter.openWriter();
+            jsonWriter.write(totalRounds);
+            jsonWriter.closeWriter();
+            System.out.println("Saved game to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save to file: " + JSON_STORE);
+        }
+
     }
 
     // MODIFIES: this
-    // EFFECTS: returns a distinct list of random int of given size, min <= int <= max
-    public List<Integer> generateRandomIntegers(int size, int min, int max) {
-        Random random = new Random();
-        List<Integer> randomIntegers = new ArrayList<>();
-        while (randomIntegers.size() < size) {
-            int randomInteger = random.nextInt(max - min + 1) + min;
-            if (!randomIntegers.contains(randomInteger)) {
-                randomIntegers.add(randomInteger);
-            }
+    // EFFECTS: loads game from file
+    private void loadGame() {
+        try {
+            fishesCaught = jsonReader.read();
+            System.out.println("Loaded game from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to load from file: " + JSON_STORE);
         }
-        return randomIntegers;
     }
-
-    // EFFECTS: returns a random letter of the lowercase alphabet
-    public char generateRandomChar() {
-        String abc = "abcdefghijklmnopqrstuvwxyz";
-        Random random = new Random();
-        char letter = abc.charAt(random.nextInt(abc.length()));
-        return letter;
-    }
-
 
 }
 

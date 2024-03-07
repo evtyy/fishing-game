@@ -28,23 +28,23 @@ public class TotalRoundsTest {
 
     @Test
     void testConstructor() {
-        assertTrue(totalRounds.getTotalFish().isEmpty());
+        assertTrue(totalRounds.getTotalCaughtFish().isEmpty());
     }
 
     @Test
     void testAddFishes() {
-        assertTrue(totalRounds.getTotalFish().isEmpty());
-        totalRounds.addFishes(list1);
-        assertEquals(1, totalRounds.getTotalFish().size());
-        assertTrue(totalRounds.getTotalFish().contains(list1));
-        assertEquals(list1, totalRounds.getTotalFish().get(0));
+        assertTrue(totalRounds.getTotalCaughtFish().isEmpty());
+        totalRounds.addListOfFishes(list1);
+        assertEquals(1, totalRounds.getTotalCaughtFish().size());
+        assertTrue(totalRounds.getTotalCaughtFish().contains(list1));
+        assertEquals(list1, totalRounds.getTotalCaughtFish().get(0));
 
-        totalRounds.addFishes(list2);
-        assertEquals(2, totalRounds.getTotalFish().size());
-        assertTrue(totalRounds.getTotalFish().contains(list1));
-        assertEquals(list1, totalRounds.getTotalFish().get(0));
-        assertTrue(totalRounds.getTotalFish().contains(list2));
-        assertEquals(list2, totalRounds.getTotalFish().get(1));
+        totalRounds.addListOfFishes(list2);
+        assertEquals(2, totalRounds.getTotalCaughtFish().size());
+        assertTrue(totalRounds.getTotalCaughtFish().contains(list1));
+        assertEquals(list1, totalRounds.getTotalCaughtFish().get(0));
+        assertTrue(totalRounds.getTotalCaughtFish().contains(list2));
+        assertEquals(list2, totalRounds.getTotalCaughtFish().get(1));
 
     }
 }

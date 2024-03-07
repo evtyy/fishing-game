@@ -19,9 +19,10 @@ With game familiarity, I can remain enthusiastic and eager to incorporate learni
 and maybe continue adding functionality after completion.
 
 ## User Stories
-### Phase 0:
+### Phase 2:
 - As a user, I want to be able to add fish to my collection
 - As a user, I want to be able to release caught fish
 - As a user, I want to be able to view a list of the fish I've caught
 - As a user, I want to be able to view a list of all sessions and its details (if largest fish was caught, total weight of all fish)
-- As a user, I want to be able to select a fish in my collection and see its details (weight, date caught, etc.)
+- As a user, I want to be able to save my sessions if I choose to
+- As a user, I want to be able to load my previous sessions if I choose to

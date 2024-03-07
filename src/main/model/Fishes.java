@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.JsonReader;
+
 import java.util.*;
 
 // Represents the list of fishes caught in one round, with total weight and date caught
@@ -29,25 +33,32 @@ public class Fishes {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds given fish to list of fish
+    // EFFECTS: adds given fish to list of fish and its weight to totalWeight
     public void addFish(Fish fish) {
         fishList.add(fish);
+        totalWeight += fish.getWeight();
     }
 
     // REQUIRES: list of fish contains given fish
     // MODIFIES: this
-    // EFFECTS: removes given fish from list of fish
+    // EFFECTS: removes given fish from list of fish and its weight from totalWeight
     public void releaseFish(Fish fish) {
         fishList.remove(fish);
+        totalWeight -= fish.getWeight();
+    }
+
+    // EFFECTS: returns the total weight of all fish in list
+    public int getTotalWeight() {
+        return totalWeight;
     }
 
     // MODIFIES: this
-    // EFFECTS: calculates and returns the total weight of all fish in list
-    public int getTotalWeight() {
+    // EFFECTS: calculates the total weight of all fish in list
+    public void calcTotalWeight() {
+        totalWeight = 0;
         for (Fish f : fishList) {
             totalWeight += f.getWeight();
         }
-        return totalWeight;
     }
 
     // MODIFIES: this
@@ -75,5 +86,26 @@ public class Fishes {
         }
         return false;
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("totalWeight", totalWeight);
+        json.put("dateCaught", dateCaught);
+        json.put("fishes", fishesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray fishesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Fish f : fishList) {
+            jsonArray.put(f.toJson());
+        }
+
+        return jsonArray;
+    }
+
+
 
 }
