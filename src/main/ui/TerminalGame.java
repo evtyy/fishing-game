@@ -159,7 +159,7 @@ public class TerminalGame {
             summary.append("Fish caught with weight: ").append(f.getWeight()).append(" lb\n");
         }
         roundSummary = new RoundSummary(fishesCaught, summary.toString());
-        roundSummary.setTryNumToCatchLargest(tryNum);
+        //roundSummary.setTryNumToCatchLargest(tryNum);
         return summary.toString();
     }
 
@@ -218,9 +218,9 @@ public class TerminalGame {
         if (fishReleased) {
             totalRounds.removeRoundSummary(roundSummary);
             roundSummary = new RoundSummary(fishesCaught, printRoundSummary());
-            roundSummary.setFishCaughtThisRound(fishesCaught);
-            roundSummary.setFishLeftInPond(game.getFishesTotal());
         }
+        roundSummary.setFishCaughtThisRound(fishesCaught);
+        roundSummary.setFishLeftInPond(game.getFishesTotal());
         totalRounds.addRoundSummary(roundSummary);
 
     }

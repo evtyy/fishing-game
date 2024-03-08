@@ -34,6 +34,10 @@ public class Fishes {
         this.dateCaught = dateCaught;
     }
 
+    public void setTotalWeight(int totalWeight) {
+        this.totalWeight = totalWeight;
+    }
+
     // MODIFIES: this
     // EFFECTS: adds given fish to list of fish and its weight to totalWeight
     public void addFish(Fish fish) {

@@ -1,134 +1,122 @@
 {"round summaries": [
   {
-    "summary": "round 1 summary",
-    "fishes caught": [
-      {
-        "letter": "a",
-        "weight": 0,
-        "isLargest": false
-      },
-      {
-        "letter": "b",
-        "weight": 0,
-        "isLargest": false
-      }
-    ],
+    "summary": "Round Summary: Date caught: Fri Mar 08 15:31:53 PST 2024 Largest fish was caught: false Total weight: 39 lb\nFish caught with weight: 19 lb\nFish caught with weight: 20 lb\n",
+    "fishes caught": {
+      "dateCaught": "Fri Mar 08 15:31:53 PST 2024",
+      "totalWeight": 39,
+      "fishes": [
+        {
+          "letter": "g",
+          "weight": 19,
+          "isLargest": false
+        },
+        {
+          "letter": "m",
+          "weight": 20,
+          "isLargest": false
+        }
+      ]
+    },
     "fish left in pond": [
       {
-        "letter": "v",
-        "weight": 3,
+        "letter": "m",
+        "weight": 2,
         "isLargest": false
       },
       {
-        "letter": "o",
-        "weight": 6,
-        "isLargest": false
-      },
-      {
-        "letter": "o",
-        "weight": 9,
-        "isLargest": false
-      },
-      {
-        "letter": "u",
-        "weight": 10,
-        "isLargest": false
-      },
-      {
-        "letter": "g",
-        "weight": 11,
-        "isLargest": false
-      },
-      {
-        "letter": "l",
-        "weight": 15,
-        "isLargest": false
-      },
-      {
-        "letter": "v",
-        "weight": 17,
-        "isLargest": false
-      },
-      {
-        "letter": "b",
-        "weight": 18,
-        "isLargest": false
-      },
-      {
-        "letter": "k",
-        "weight": 26,
+        "letter": "p",
+        "weight": 4,
         "isLargest": false
       },
       {
         "letter": "s",
-        "weight": 29,
+        "weight": 6,
+        "isLargest": false
+      },
+      {
+        "letter": "b",
+        "weight": 8,
+        "isLargest": false
+      },
+      {
+        "letter": "d",
+        "weight": 11,
+        "isLargest": false
+      },
+      {
+        "letter": "y",
+        "weight": 21,
+        "isLargest": false
+      },
+      {
+        "letter": "l",
+        "weight": 27,
+        "isLargest": false
+      },
+      {
+        "letter": "u",
+        "weight": 30,
         "isLargest": true
       }
     ]
   },
   {
-    "summary": "round 2 summary",
-    "fishes caught": [
-      {
-        "letter": "c",
-        "weight": 0,
-        "isLargest": false
-      },
-      {
-        "letter": "d",
-        "weight": 30,
-        "isLargest": true
-      }
-    ],
+    "summary": "Round Summary: Date caught: Fri Mar 08 15:31:59 PST 2024 Largest fish was caught: false Total weight: 28 lb\nFish caught with weight: 4 lb\nFish caught with weight: 24 lb\n",
+    "fishes caught": {
+      "dateCaught": "Fri Mar 08 15:31:59 PST 2024",
+      "totalWeight": 28,
+      "fishes": [
+        {
+          "letter": "e",
+          "weight": 4,
+          "isLargest": false
+        },
+        {
+          "letter": "c",
+          "weight": 24,
+          "isLargest": false
+        }
+      ]
+    },
     "fish left in pond": [
       {
-        "letter": "n",
-        "weight": 1,
+        "letter": "b",
+        "weight": 3,
         "isLargest": false
       },
       {
-        "letter": "s",
-        "weight": 6,
+        "letter": "k",
+        "weight": 5,
         "isLargest": false
       },
       {
         "letter": "e",
-        "weight": 9,
+        "weight": 8,
         "isLargest": false
       },
       {
-        "letter": "d",
-        "weight": 11,
+        "letter": "a",
+        "weight": 18,
         "isLargest": false
       },
       {
-        "letter": "d",
-        "weight": 12,
-        "isLargest": false
-      },
-      {
-        "letter": "t",
-        "weight": 16,
-        "isLargest": false
-      },
-      {
-        "letter": "t",
-        "weight": 19,
-        "isLargest": false
-      },
-      {
-        "letter": "y",
-        "weight": 22,
-        "isLargest": false
-      },
-      {
-        "letter": "s",
-        "weight": 23,
+        "letter": "u",
+        "weight": 20,
         "isLargest": false
       },
       {
         "letter": "q",
-        "weight": 28,
+        "weight": 26,
+        "isLargest": false
+      },
+      {
+        "letter": "b",
+        "weight": 29,
+        "isLargest": false
+      },
+      {
+        "letter": "p",
+        "weight": 30,
         "isLargest": true
       }
     ]

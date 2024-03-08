@@ -56,27 +56,58 @@ public class JsonReader {
     }
 
     private void addRoundSummary(TotalRounds totalRounds, JSONObject jsonObject) {
+        Fishes fishesCaught = parseFishes(jsonObject.getJSONObject("fishes caught"));
+
+        String summary = jsonObject.getString("summary");
+        RoundSummary roundSummary = new RoundSummary(fishesCaught, summary);
+        totalRounds.addRoundSummary(roundSummary);
+
+        Fishes fishesLeft = parseFishes(jsonObject.getJSONArray("fish left in pond"));
+        totalRounds.addListOfFishCaught(fishesCaught);
+        roundSummary.setFishLeftInPond(fishesLeft);
+    }
+
+    private Fishes parseFishes(JSONArray fishesLeftInPond) {
         Fishes fishes = new Fishes();
-        JSONArray fishesArray = jsonObject.getJSONArray("fishes caught");
+
+        for (Object json : fishesLeftInPond) {
+            JSONObject nextFish = (JSONObject) json;
+            addFish(fishes, nextFish);
+        }
+
+        return fishes;
+    }
+
+    private Fishes parseFishes(JSONObject jsonObject) {
+        Fishes fishes = new Fishes();
+        String dateCaught = jsonObject.getString("dateCaught");
+        int totalWeight = jsonObject.getInt("totalWeight");
+        fishes.setDateCaught(dateCaught);
+        fishes.setTotalWeight(totalWeight);
+
+        JSONArray fishesArray = jsonObject.getJSONArray("fishes");
         for (Object json : fishesArray) {
             JSONObject nextFish = (JSONObject) json;
             addFish(fishes, nextFish);
         }
-        totalRounds.addListOfFishCaught(fishes);
-        String summary = jsonObject.getString("summary");
-        RoundSummary roundSummary = new RoundSummary(fishes, summary);
-        totalRounds.addRoundSummary(roundSummary);
+        return fishes;
     }
 
-//    private void addFishInPond(Game game, JSONObject jsonObject) {
-//        Fishes fishes = new Fishes();
-//        JSONArray jsonArray = jsonObject.getJSONArray("fishes in pond");
-//        for (Object json : jsonArray) {
-//            JSONObject nextFish = (JSONObject) json;
-//            addFish(fishes, nextFish);
-//        }
-//        game.setFishesTotal(fishes);
-//    }
+    // MODIFIES: fishes
+    // EFFECTS: parses fish from JSON object and adds it to total rounds
+    private void addFish(Fishes fishes, JSONObject jsonObject) {
+        String letter = jsonObject.getString("letter");
+        char c = letter.charAt(0);
+        Integer weight = jsonObject.getInt("weight");
+        boolean isLargest = jsonObject.getBoolean("isLargest");
+        Fish fish = new Fish(c);
+        fish.setWeight(weight);
+        if (isLargest) {
+            fish.setLargest();
+        }
+        fishes.addFish(fish);
+
+    }
 
 
     // MODIFIES:
@@ -100,20 +131,4 @@ public class JsonReader {
 //        }
 //        totalRounds.addListOfFishCaught(fishes);
 //    }
-
-    // MODIFIES: fishes
-    // EFFECTS: parses fish from JSON object and adds it to total rounds
-    private void addFish(Fishes fishes, JSONObject jsonObject) {
-        String letter = jsonObject.getString("letter");
-        char c = letter.charAt(0);
-        Integer weight = jsonObject.getInt("weight");
-        boolean isLargest = jsonObject.getBoolean("isLargest");
-        Fish fish = new Fish(c);
-        fish.setWeight(weight);
-        if (isLargest) {
-            fish.setLargest();
-        }
-        fishes.addFish(fish);
-
-    }
 }

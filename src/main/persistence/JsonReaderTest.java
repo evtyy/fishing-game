@@ -21,20 +21,21 @@ public class JsonReaderTest {
     }
 
     @Test
-    void testReaderEmptyFishes() {
+    void testReaderEmptyTotalRounds() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyFishes.json");
 
         try {
             TotalRounds totalRounds = reader.read();
-            assertEquals(0, totalRounds.getFishCaughtAllRounds().size());
-            assertEquals(0, totalRounds.getAllSummaries().size());
+            assertEquals(0, totalRounds.getNumFishCaughtAllRounds());
+
+            assertEquals(1, totalRounds.getAllSummaries().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
     }
 
     @Test
-    void testReaderTypicalFishes() {
+    void testReaderTypicalTotalRounds() {
         JsonReader reader = new JsonReader("./data/testReaderTypicalFishes.json");
         try {
             TotalRounds totalRounds = reader.read();

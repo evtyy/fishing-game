@@ -32,9 +32,9 @@ public class RoundSummary {
         return fishCaughtThisRound.getFishList().size();
     }
 
-    public int getTryNumToCatchLargest() {
-        return tryNumToCatchLargest;
-    }
+//    public int getTryNumToCatchLargest() {
+//        return tryNumToCatchLargest;
+//    }
 
     public String getRoundSummary() {
         return roundSummary;
@@ -49,21 +49,21 @@ public class RoundSummary {
         this.fishCaughtThisRound = fishes;
     }
 
-    public void setNumFishCaught() {
-        this.numFishCaught = fishCaughtThisRound.getFishList().size();
-    }
+//    public void setNumFishCaught() {
+//        this.numFishCaught = fishCaughtThisRound.getFishList().size();
+//    }
 
     public void setLargestCaught() {
         this.isLargestCaught = true;
     }
 
-    public void setTryNumToCatchLargest(int tryNum) {
-        this.tryNumToCatchLargest = tryNum;
-    }
+//    public void setTryNumToCatchLargest(int tryNum) {
+//        this.tryNumToCatchLargest = tryNum;
+//    }
 
-    public void setRoundSummary(String summary) {
-        this.roundSummary = summary;
-    }
+//    public void setRoundSummary(String summary) {
+//        this.roundSummary = summary;
+//    }
 
     public void setFishLeftInPond(Fishes fishes) {
         this.fishLeftInPond = fishes;
@@ -86,7 +86,7 @@ public class RoundSummary {
 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("fishes caught", fishesCaughtToJson());
+        json.put("fishes caught", fishCaughtThisRound.toJson());
         json.put("summary", roundSummary);
         json.put("fish left in pond", fishesToJson());
         return json;
@@ -94,10 +94,10 @@ public class RoundSummary {
 
     public JSONArray fishesCaughtToJson() {
         JSONArray jsonArray = new JSONArray();
-
-        for (Fish fish: fishCaughtThisRound.getFishList()) {
-            jsonArray.put(fish.toJson());
-        }
+        fishCaughtThisRound.toJson();
+//        for (Fish fish: fishCaughtThisRound.getFishList()) {
+//            jsonArray.put(fish.toJson());
+//        }
         return jsonArray;
     }
 

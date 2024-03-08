@@ -1,20 +1,61 @@
-{"round summaries": [
-    {
-        "summary": "Round Summary: Date caught: Fri Mar 08 13:47:21 PST 2024 Largest fish was caught: false Total weight: 15 lb\nFish caught with weight: 15 lb\n",
-        "fishes caught": [{
-            "letter": "k",
-            "weight": 15,
-            "isLargest": false
-        }],
-        "fish left in pond": []
+{"round summaries": [{
+    "summary": "Round Summary: Date caught: Fri Mar 08 15:36:03 PST 2024 Largest fish was caught: false Total weight: 64 lb\nFish caught with weight: 18 lb\nFish caught with weight: 22 lb\nFish caught with weight: 24 lb\n",
+    "fishes caught": {
+        "dateCaught": "Fri Mar 08 15:36:03 PST 2024",
+        "totalWeight": 64,
+        "fishes": [
+            {
+                "letter": "t",
+                "weight": 18,
+                "isLargest": false
+            },
+            {
+                "letter": "k",
+                "weight": 22,
+                "isLargest": false
+            },
+            {
+                "letter": "r",
+                "weight": 24,
+                "isLargest": false
+            }
+        ]
     },
-    {
-        "summary": "Round Summary: Date caught: Fri Mar 08 13:47:29 PST 2024 Largest fish was caught: false Total weight: 11 lb\nFish caught with weight: 11 lb\n",
-        "fishes caught": [{
+    "fish left in pond": [
+        {
             "letter": "s",
-            "weight": 11,
+            "weight": 1,
             "isLargest": false
-        }],
-        "fish left in pond": []
-    }
-]}
+        },
+        {
+            "letter": "f",
+            "weight": 10,
+            "isLargest": false
+        },
+        {
+            "letter": "p",
+            "weight": 14,
+            "isLargest": false
+        },
+        {
+            "letter": "f",
+            "weight": 19,
+            "isLargest": false
+        },
+        {
+            "letter": "n",
+            "weight": 26,
+            "isLargest": false
+        },
+        {
+            "letter": "t",
+            "weight": 28,
+            "isLargest": false
+        },
+        {
+            "letter": "d",
+            "weight": 30,
+            "isLargest": true
+        }
+    ]
+}]}

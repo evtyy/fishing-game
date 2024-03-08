@@ -48,6 +48,27 @@ public class RoundSummaryTest {
     }
 
     @Test
+    void testGetFishLeftInPond() {
+        roundSummary.setFishLeftInPond(list1);
+        assertEquals(0, roundSummary.getFishLeftInPond().getFishList().size());
+        list1.addFish(f1);
+        list1.addFish(f2);
+        list1.addFish(f3);
+        assertEquals(3, roundSummary.getFishLeftInPond().getFishList().size());
+
+    }
+
+    @Test
+    void testSetFishCaughtThisRound() {
+        roundSummary.setFishCaughtThisRound(list1);
+        assertEquals(0, roundSummary.getFishCaughtThisRound().getFishList().size());
+        list1.addFish(f1);
+        list1.addFish(f2);
+        list1.addFish(f3);
+        assertEquals(3, roundSummary.getFishCaughtThisRound().getFishList().size());
+    }
+
+    @Test
     void testIsLargestCaughtTrue() {
         roundSummary.addFishCaught(f1);
         assertTrue(roundSummary.isLargestCaught());
