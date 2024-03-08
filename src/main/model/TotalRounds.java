@@ -40,9 +40,9 @@ public class TotalRounds {
         for (RoundSummary r: roundSummaries) {
             String sum = r.getRoundSummary();
             allSummaries.add(sum);
-            if (!allSummaries.contains(sum)) {
-                allSummaries.add(sum);
-            }
+//            if (!allSummaries.contains(sum)) {
+//                allSummaries.add(sum);
+//            }
         }
         return allSummaries;
     }

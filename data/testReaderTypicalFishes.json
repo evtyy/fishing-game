@@ -76,8 +76,8 @@
       },
       {
         "letter": "d",
-        "weight": 0,
-        "isLargest": false
+        "weight": 30,
+        "isLargest": true
       }
     ],
     "fish left in pond": [

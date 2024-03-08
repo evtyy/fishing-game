@@ -15,7 +15,6 @@ public class FishTest {
         f1 = new Fish('x');
         f2 = new Fish('y');
         f3 = new Fish('z');
-
     }
 
     @Test
@@ -39,5 +38,17 @@ public class FishTest {
         assertEquals(21, f1.getWeight());
         assertEquals(1, f2.getWeight());
         assertEquals(9, f3.getWeight());
+    }
+
+    @Test
+    void testToString() {
+        f1.setWeight(2);
+        f2.setWeight(12);
+        f3.setWeight(25);
+        f3.setLargest();
+        assertEquals("Fish weighing: 2 is largest: false", f1.toString());
+        assertEquals("Fish weighing: 12 is largest: false", f2.toString());
+        assertEquals("Fish weighing: 25 is largest: true", f3.toString());
+
     }
 }

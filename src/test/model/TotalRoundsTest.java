@@ -88,6 +88,27 @@ public class TotalRoundsTest {
     }
 
     @Test
+    void testAddRoundSummaryContains() {
+        totalRounds.addRoundSummary(roundSummary1);
+        assertEquals(1, totalRounds.getRoundSummaries().size());
+        totalRounds.addRoundSummary(roundSummary1);
+        assertEquals(1, totalRounds.getRoundSummaries().size());
+    }
+
+
+    @Test
+    void testRemoveRoundSummary() {
+        totalRounds.addRoundSummary(roundSummary1);
+        totalRounds.addRoundSummary(roundSummary2);
+        assertEquals(2, totalRounds.getRoundSummaries().size());
+
+        totalRounds.removeRoundSummary(roundSummary1);
+        assertEquals(1, totalRounds.getRoundSummaries().size());
+    }
+
+
+
+    @Test
     void testAvgTotalWeight() {
         totalRounds.addRoundSummary(roundSummary1);
         totalRounds.addRoundSummary(roundSummary2);
@@ -105,6 +126,12 @@ public class TotalRoundsTest {
         assertEquals(13.66, totalRounds.avgTotalWeight());
         assertEquals(13.66, totalRounds.getAvgTotalWeight());
 
+    }
+
+    @Test
+    void testGetAvgNumTriesToWin() {
+        totalRounds.setAvgNumTriesToWin(3.5);
+        assertEquals(3.5, totalRounds.getAvgNumTriesToWin());
     }
 
 
@@ -145,6 +172,17 @@ public class TotalRoundsTest {
         assertEquals(list1, totalRounds.getFishCaughtAllRounds().get(0));
         assertTrue(totalRounds.getFishCaughtAllRounds().contains(list2));
         assertEquals(list2, totalRounds.getFishCaughtAllRounds().get(1));
+
+    }
+
+    @Test
+    void testAddListOfFishCaughtContains() {
+        totalRounds.addListOfFishCaught(list1);
+        assertEquals(1, totalRounds.getFishCaughtAllRounds().size());
+        totalRounds.addListOfFishCaught(list1);
+        assertEquals(1, totalRounds.getFishCaughtAllRounds().size());
+        assertTrue(totalRounds.getFishCaughtAllRounds().contains(list1));
+        assertEquals(list1, totalRounds.getFishCaughtAllRounds().get(0));
 
     }
 
