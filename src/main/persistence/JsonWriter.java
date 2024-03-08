@@ -1,6 +1,7 @@
 package persistence;
 
 import model.Fishes;
+import model.Game;
 import model.TotalRounds;
 import org.json.JSONObject;
 
@@ -28,8 +29,8 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of workroom to file
-    public void write(TotalRounds fishes) {
-        JSONObject json = fishes.toJson();
+    public void write(TotalRounds totalRounds) {
+        JSONObject json = totalRounds.toJson();
         saveToFile(json.toString(TAB));
     }
 

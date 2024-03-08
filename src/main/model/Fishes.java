@@ -11,11 +11,13 @@ public class Fishes {
     private List<Fish> fishList;
     private int totalWeight;
     private String dateCaught;
+    private boolean isLargestCaught;
 
     public Fishes() {
         fishList = new ArrayList<>();
         this.totalWeight = 0;
         this.dateCaught = "";
+        this.isLargestCaught = false;
     }
 
     //getters
@@ -53,15 +55,6 @@ public class Fishes {
     }
 
     // MODIFIES: this
-    // EFFECTS: calculates the total weight of all fish in list
-    public void calcTotalWeight() {
-        totalWeight = 0;
-        for (Fish f : fishList) {
-            totalWeight += f.getWeight();
-        }
-    }
-
-    // MODIFIES: this
     // EFFECTS: sorts fish by weight in ascending order
     public void sortFishByWeight() {
         Comparator<Fish> comparator = Comparator.comparingInt(Fish::getWeight);
@@ -77,10 +70,12 @@ public class Fishes {
         return fishList.get(lastIndex);
     }
 
-    // EFFECTS: returns true if largest is list of fish; false otherwise
+
+    // EFFECTS: returns true if largest is in list of fish; false otherwise
     public boolean isLargestCaught() {
         for (Fish f: fishList) {
             if (f.isLargest()) {
+                isLargestCaught = true;
                 return true;
             }
         }

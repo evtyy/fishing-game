@@ -20,6 +20,10 @@ public class Fish {
         this.isLargest = false;
     }
 
+    public String toString() {
+        return "Fish weighing: " + getWeight() + " is largest: " + isLargest();
+    }
+
     //getters
     public int getWeight() {
         return weight;

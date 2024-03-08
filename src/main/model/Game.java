@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -65,4 +68,25 @@ public class Game {
     public Fishes getFishesTotal() {
         return fishesTotal;
     }
+
+    // setter
+    public void setFishesTotal(Fishes fishes) {
+        this.fishesTotal = fishes;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("fishInPond", fishesTotal.toJson());
+        return json;
+    }
+
+//    private JSONArray fishesToJson() {
+//        JSONArray roundsArray = new JSONArray();
+//
+//        for (Fishes fishes : fishesTotal) {
+//            roundsArray.put(fishes.toJson());
+//        }
+//
+//        return roundsArray;
+//    }
 }

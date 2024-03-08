@@ -1,6 +1,6 @@
 package persistence;
 
-import model.Fishes;
+import model.TotalRounds;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class JsonReaderTest {
     void testTestReaderFileDoesntExist() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            Fishes fishes = reader.read();
+            TotalRounds totalRounds = reader.read();
             fail("IOException expected");
         } catch (IOException e) {
             // expected
@@ -23,10 +23,11 @@ public class JsonReaderTest {
     @Test
     void testReaderEmptyFishes() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyFishes.json");
+
         try {
-            Fishes fishes = reader.read();
-            assertEquals(0, fishes.getFishList().size());
-            assertEquals(0, fishes.getTotalWeight());
+            TotalRounds totalRounds = reader.read();
+            assertEquals(0, totalRounds.getFishCaughtAllRounds().size());
+            assertEquals(0, totalRounds.getAllSummaries().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -36,11 +37,13 @@ public class JsonReaderTest {
     void testReaderTypicalFishes() {
         JsonReader reader = new JsonReader("./data/testReaderTypicalFishes.json");
         try {
-            Fishes fishes = reader.read();
-            assertEquals(2, fishes.getFishList().size());
-
+            TotalRounds totalRounds = reader.read();
+            assertEquals(4, totalRounds.getNumFishCaughtAllRounds());
+            assertEquals(2, totalRounds.getAllSummaries().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
     }
+
+
 }
