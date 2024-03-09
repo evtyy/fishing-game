@@ -52,11 +52,18 @@ public class TotalRounds {
     public List<String> getAllSummaries() {
         for (RoundSummary r: roundSummaries) {
             String sum = r.getRoundSummary();
-            if (!allSummaries.contains(sum)) {
-                allSummaries.add(sum);
-            }
+            addSummary(sum);
         }
         return allSummaries;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if list of summaries doesn't contain given summary,
+    //          adds summary to list of summaries; otherwise nothing
+    public void addSummary(String summary) {
+        if (!allSummaries.contains(summary)) {
+            allSummaries.add(summary);
+        }
     }
 
 

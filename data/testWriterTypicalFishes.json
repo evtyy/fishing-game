@@ -1,129 +1,35 @@
 {"round summaries": [
     {
         "summary": "round 1 summary",
-        "fishes caught": [
-            {
-                "letter": "a",
-                "weight": 0,
-                "isLargest": false
-            },
-            {
-                "letter": "b",
-                "weight": 0,
-                "isLargest": false
-            }
-        ],
-        "fish left in pond": [
-            {
-                "letter": "v",
-                "weight": 3,
-                "isLargest": false
-            },
-            {
-                "letter": "o",
-                "weight": 6,
-                "isLargest": false
-            },
-            {
-                "letter": "o",
-                "weight": 9,
-                "isLargest": false
-            },
-            {
-                "letter": "u",
-                "weight": 10,
-                "isLargest": false
-            },
-            {
-                "letter": "g",
-                "weight": 11,
-                "isLargest": false
-            },
-            {
-                "letter": "l",
-                "weight": 15,
-                "isLargest": false
-            },
-            {
-                "letter": "v",
-                "weight": 17,
-                "isLargest": false
-            },
-            {
-                "letter": "b",
-                "weight": 18,
-                "isLargest": false
-            },
-            {
-                "letter": "k",
-                "weight": 26,
-                "isLargest": false
-            },
-            {
-                "letter": "s",
-                "weight": 29,
-                "isLargest": true
-            }
-        ]
+        "fishes caught": {
+            "dateCaught": "",
+            "totalWeight": 0,
+            "fishes": [
+                {
+                    "letter": "a",
+                    "weight": 0,
+                    "isLargest": false
+                },
+                {
+                    "letter": "b",
+                    "weight": 0,
+                    "isLargest": false
+                }
+            ]
+        },
+        "fish left in pond": []
     },
     {
         "summary": "round 2 summary",
-        "fishes caught": [{
-            "letter": "c",
-            "weight": 0,
-            "isLargest": false
-        }],
-        "fish left in pond": [
-            {
-                "letter": "n",
-                "weight": 1,
+        "fishes caught": {
+            "dateCaught": "",
+            "totalWeight": 0,
+            "fishes": [{
+                "letter": "c",
+                "weight": 0,
                 "isLargest": false
-            },
-            {
-                "letter": "s",
-                "weight": 6,
-                "isLargest": false
-            },
-            {
-                "letter": "e",
-                "weight": 9,
-                "isLargest": false
-            },
-            {
-                "letter": "d",
-                "weight": 11,
-                "isLargest": false
-            },
-            {
-                "letter": "d",
-                "weight": 12,
-                "isLargest": false
-            },
-            {
-                "letter": "t",
-                "weight": 16,
-                "isLargest": false
-            },
-            {
-                "letter": "t",
-                "weight": 19,
-                "isLargest": false
-            },
-            {
-                "letter": "y",
-                "weight": 22,
-                "isLargest": false
-            },
-            {
-                "letter": "s",
-                "weight": 23,
-                "isLargest": false
-            },
-            {
-                "letter": "q",
-                "weight": 28,
-                "isLargest": true
-            }
-        ]
+            }]
+        },
+        "fish left in pond": []
     }
 ]}

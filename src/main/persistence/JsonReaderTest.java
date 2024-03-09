@@ -27,7 +27,6 @@ public class JsonReaderTest {
         try {
             TotalRounds totalRounds = reader.read();
             assertEquals(0, totalRounds.getNumFishCaughtAllRounds());
-
             assertEquals(1, totalRounds.getAllSummaries().size());
         } catch (IOException e) {
             fail("Couldn't read from file");

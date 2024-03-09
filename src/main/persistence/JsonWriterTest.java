@@ -20,7 +20,7 @@ public class JsonWriterTest {
             JsonWriter writer = new JsonWriter("./data/my\0illegal:fileName.json");
             writer.openWriter();
             fail("IOException was expected");
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             // expected
         }
     }
@@ -84,8 +84,6 @@ public class JsonWriterTest {
         totalRounds.addRoundSummary(roundSummary1);
         totalRounds.addRoundSummary(roundSummary2);
 
-//        totalRounds.addListOfFishCaught(fishes1);
-//        totalRounds.addListOfFishCaught(fishes2);
         return totalRounds;
     }
 }

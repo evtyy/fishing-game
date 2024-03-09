@@ -72,6 +72,23 @@ public class TotalRoundsTest {
     }
 
     @Test
+    void testAddSummary() {
+        totalRounds.addSummary(roundOneSum);
+        assertEquals(1, totalRounds.getAllSummaries().size());
+        assertTrue(totalRounds.getAllSummaries().contains(roundOneSum));
+    }
+
+    @Test
+    void testAddSummaryContains() {
+        totalRounds.addSummary(roundOneSum);
+        assertEquals(1, totalRounds.getAllSummaries().size());
+        assertTrue(totalRounds.getAllSummaries().contains(roundOneSum));
+        totalRounds.addSummary(roundOneSum);
+        assertEquals(1, totalRounds.getAllSummaries().size());
+        assertTrue(totalRounds.getAllSummaries().contains(roundOneSum));
+    }
+
+    @Test
     void testAddRoundSummary() {
         totalRounds.addRoundSummary(roundSummary1);
         assertEquals(1, totalRounds.getRoundSummaries().size());
