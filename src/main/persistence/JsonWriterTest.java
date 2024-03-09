@@ -77,16 +77,16 @@ public class JsonWriterTest {
         String roundOneSum = "round 1 summary";
         String roundTwoSum = "round 2 summary";
 
-        Fishes fishLeft1 = new Fishes();
+        Fishes fishLeft = new Fishes();
 
-        fishLeft1.addFish(new Fish('x'));
-        fishLeft1.addFish(new Fish('y'));
-        fishLeft1.addFish(new Fish('z'));
+        fishLeft.addFish(new Fish('x'));
+        fishLeft.addFish(new Fish('y'));
+        fishLeft.addFish(new Fish('z'));
 
         RoundSummary roundSummary1 = new RoundSummary(fishes1, roundOneSum);
         RoundSummary roundSummary2 = new RoundSummary(fishes2, roundTwoSum);
 
-        roundSummary1.setFishLeftInPond(fishLeft1);
+        roundSummary1.setFishLeftInPond(fishLeft);
 
         totalRounds.addRoundSummary(roundSummary1);
         totalRounds.addRoundSummary(roundSummary2);
