@@ -92,7 +92,7 @@ public class RoundSummary {
     // EFFECTS: returns roundSummary as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("fishes caught", fishCaughtThisRound.toJson());
+        json.put("fishes caught", fishCaughtThisRound.fishesCaughtToJson());
         json.put("summary", roundSummary);
         json.put("fish left in pond", fishesToJson());
         return json;
@@ -101,11 +101,9 @@ public class RoundSummary {
     // EFFECTS: returns fishes in this round summary as a JSON array
     private JSONArray fishesToJson() {
         JSONArray jsonArray = new JSONArray();
-
         for (Fish f : fishLeftInPond.getFishList()) {
             jsonArray.put(f.toJson());
         }
-
         return jsonArray;
     }
 

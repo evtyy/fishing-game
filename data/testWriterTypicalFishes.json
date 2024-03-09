@@ -17,7 +17,23 @@
                 }
             ]
         },
-        "fish left in pond": []
+        "fish left in pond": [
+            {
+                "letter": "x",
+                "weight": 0,
+                "isLargest": false
+            },
+            {
+                "letter": "y",
+                "weight": 0,
+                "isLargest": false
+            },
+            {
+                "letter": "z",
+                "weight": 0,
+                "isLargest": false
+            }
+        ]
     },
     {
         "summary": "round 2 summary",

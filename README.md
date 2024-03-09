@@ -23,9 +23,8 @@ and maybe continue adding functionality after completion.
 - As a user, I want to be able to add fish to my collection
 - As a user, I want to be able to release caught fish
 - As a user, I want to be able to view a list of the fish I've caught
-- As a user, I want to be able to view a list of all sessions and its details (if largest fish was caught, total weight of all fish)
+- As a user, I want to be able to view a list of all rounds and its details (if largest fish was caught, total weight of all fish)
 - As a user, I want to be able to save my sessions if I choose to
 - As a user, I want to be able to load my previous sessions if I choose to
 - As a user, I want to be able to be able to see how many times largest was caught / round played
-- As a user, I want to be able to see average number of tries to catch largest
 - As a user, I want to be able to see average total weight

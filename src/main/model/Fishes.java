@@ -2,7 +2,6 @@ package model;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import persistence.JsonReader;
 
 import java.util.*;
 
@@ -86,13 +85,19 @@ public class Fishes {
         return false;
     }
 
-    public JSONObject toJson() {
+    public JSONObject fishesCaughtToJson() {
         JSONObject json = new JSONObject();
         json.put("totalWeight", totalWeight);
         json.put("dateCaught", dateCaught);
         json.put("fishes", fishesToJson());
         return json;
     }
+
+//    public JSONObject fishesLeftToJson() {
+//        JSONObject json = new JSONObject();
+//        json.put("fish left in pond", fishesToJson());
+//        return json;
+//    }
 
     // EFFECTS: returns things in this workroom as a JSON array
     private JSONArray fishesToJson() {

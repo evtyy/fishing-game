@@ -3,10 +3,8 @@ package persistence;
 import model.*;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -56,6 +54,8 @@ public class JsonWriterTest {
             totalRounds = reader.read();
             assertEquals(3, totalRounds.getNumFishCaughtAllRounds());
             assertEquals(2, totalRounds.getAllSummaries().size());
+            RoundSummary roundSummary = totalRounds.getRoundSummaries().get(0);
+            assertEquals(3, roundSummary.getFishLeftInPond().getFishList().size());
         } catch (IOException e) {
             fail("IOException should not have been thrown");
         }
@@ -63,7 +63,6 @@ public class JsonWriterTest {
 
     TotalRounds totalRoundsTest() {
         TotalRounds totalRounds = new TotalRounds();
-        //List<RoundSummary> roundSummaries = new ArrayList<>();
 
         Fish fish1 = new Fish('a');
         Fish fish2 = new Fish('b');
@@ -78,8 +77,16 @@ public class JsonWriterTest {
         String roundOneSum = "round 1 summary";
         String roundTwoSum = "round 2 summary";
 
+        Fishes fishLeft1 = new Fishes();
+
+        fishLeft1.addFish(new Fish('x'));
+        fishLeft1.addFish(new Fish('y'));
+        fishLeft1.addFish(new Fish('z'));
+
         RoundSummary roundSummary1 = new RoundSummary(fishes1, roundOneSum);
-        RoundSummary roundSummary2 = new RoundSummary(fishes2, roundTwoSum);;
+        RoundSummary roundSummary2 = new RoundSummary(fishes2, roundTwoSum);
+
+        roundSummary1.setFishLeftInPond(fishLeft1);
 
         totalRounds.addRoundSummary(roundSummary1);
         totalRounds.addRoundSummary(roundSummary2);

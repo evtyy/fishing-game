@@ -1,61 +1,25 @@
 {"round summaries": [{
-    "summary": "Round Summary: Date caught: Fri Mar 08 16:51:17 PST 2024 Largest fish was caught: false Total weight: 18 lb\nFish caught with weight: 12 lb\nFish caught with weight: 6 lb\n",
+    "summary": "Round Summary: Date caught: Fri Mar 08 17:10:19 PST 2024 Largest fish was caught: false Total weight: 8 lb\nFish caught with weight: 2 lb\nFish caught with weight: 5 lb\nFish caught with weight: 1 lb\n",
     "fishes caught": {
-        "dateCaught": "Fri Mar 08 16:51:17 PST 2024",
-        "totalWeight": 18,
+        "dateCaught": "Fri Mar 08 17:10:19 PST 2024",
+        "totalWeight": 8,
         "fishes": [
             {
-                "letter": "f",
-                "weight": 12,
+                "letter": "k",
+                "weight": 2,
                 "isLargest": false
             },
             {
-                "letter": "c",
-                "weight": 6,
+                "letter": "h",
+                "weight": 5,
+                "isLargest": false
+            },
+            {
+                "letter": "i",
+                "weight": 1,
                 "isLargest": false
             }
         ]
     },
-    "fish left in pond": [
-        {
-            "letter": "b",
-            "weight": 4,
-            "isLargest": false
-        },
-        {
-            "letter": "c",
-            "weight": 5,
-            "isLargest": false
-        },
-        {
-            "letter": "k",
-            "weight": 14,
-            "isLargest": false
-        },
-        {
-            "letter": "u",
-            "weight": 16,
-            "isLargest": false
-        },
-        {
-            "letter": "h",
-            "weight": 17,
-            "isLargest": false
-        },
-        {
-            "letter": "t",
-            "weight": 19,
-            "isLargest": false
-        },
-        {
-            "letter": "f",
-            "weight": 20,
-            "isLargest": false
-        },
-        {
-            "letter": "c",
-            "weight": 28,
-            "isLargest": true
-        }
-    ]
+    "fish left in pond": []
 }]}
