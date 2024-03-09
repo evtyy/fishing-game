@@ -47,6 +47,8 @@ public class JsonReader {
 
     }
 
+    // MODIFIES: totalRounds
+    // EFFECTS: parses round summaries from JSON object and adds them to totalRounds
     private void addRoundSummaries(TotalRounds totalRounds, JSONObject jsonObject) {
         JSONArray roundSummariesArray = jsonObject.getJSONArray("round summaries");
         for (Object json : roundSummariesArray) {
@@ -55,6 +57,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: totalRounds
+    // EFFECTS: parses round summary from JSON object and adds them to totalRounds
     private void addRoundSummary(TotalRounds totalRounds, JSONObject jsonObject) {
         Fishes fishesCaught = parseFishes(jsonObject.getJSONObject("fishes caught"));
 
@@ -67,6 +71,7 @@ public class JsonReader {
         roundSummary.setFishLeftInPond(fishesLeft);
     }
 
+    // EFFECTS: parses Fishes from JSON array and returns it
     private Fishes parseFishes(JSONArray fishesLeftInPond) {
         Fishes fishes = new Fishes();
 
@@ -78,6 +83,7 @@ public class JsonReader {
         return fishes;
     }
 
+    // EFFECTS: parses Fishes from JSON object and returns it
     private Fishes parseFishes(JSONObject jsonObject) {
         Fishes fishes = new Fishes();
         String dateCaught = jsonObject.getString("dateCaught");

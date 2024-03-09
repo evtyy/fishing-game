@@ -10,10 +10,8 @@ import java.util.Random;
 // Represents an instance of the game
 public class Game {
     private Fishes fishesTotal;
-    //private Fishes fishesCaught = new Fishes();
     private List<Integer> randomWeights;
     private static final int TOTAL_FISH = 10;
-    //private static final int MAX_TRIES = 3;
     private static final int MIN_WEIGHT = 1;
     private static final int MAX_WEIGHT = 30;
 
@@ -68,25 +66,4 @@ public class Game {
     public Fishes getFishesTotal() {
         return fishesTotal;
     }
-
-    // setter
-    public void setFishesTotal(Fishes fishes) {
-        this.fishesTotal = fishes;
-    }
-
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("fishInPond", fishesTotal.toJson());
-        return json;
-    }
-
-//    private JSONArray fishesToJson() {
-//        JSONArray roundsArray = new JSONArray();
-//
-//        for (Fishes fishes : fishesTotal) {
-//            roundsArray.put(fishes.toJson());
-//        }
-//
-//        return roundsArray;
-//    }
 }

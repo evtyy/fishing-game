@@ -7,7 +7,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents the total list of fishes caught on multiple rounds
+// Represents the total list of fishes caught on multiple rounds, all round summaries, and stats for
+// all rounds: largest caught percentage, avg number of tries to catch largest, avg total weight
 public class TotalRounds {
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private double largestCaughtPercentage;
@@ -18,7 +19,8 @@ public class TotalRounds {
     private List<String> allSummaries;
     private List<RoundSummary> roundSummaries;
 
-    //EFFECTS: constructs an empty list of fishes
+    //EFFECTS: constructs an empty list of fishes, empty list of summaries, empty list of
+    //         round summaries, and initializes largestCaughtPercentage, avgNumTriesToWin, avgTotalWeight
     public TotalRounds() {
         largestCaughtPercentage = 0.0;
         avgNumTriesToWin = 0.0;
@@ -29,6 +31,9 @@ public class TotalRounds {
         roundSummaries = new ArrayList<>();
     }
 
+    // MODIFIES: this
+    // EFFECTS: if list of round summaries doesn't contain given round summary, adds it to list of round summaries;
+    //          nothing otherwise
     public void addRoundSummary(RoundSummary roundSummary) {
         if (!roundSummaries.contains(roundSummary)) {
             roundSummaries.add(roundSummary);
@@ -36,20 +41,25 @@ public class TotalRounds {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes round summary from list of round summaries
+    public void removeRoundSummary(RoundSummary roundSummary) {
+        roundSummaries.remove(roundSummary);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds all summaries in roundSummaries to a list and returns it
     public List<String> getAllSummaries() {
         for (RoundSummary r: roundSummaries) {
             String sum = r.getRoundSummary();
-            allSummaries.add(sum);
-//            if (!allSummaries.contains(sum)) {
-//                allSummaries.add(sum);
-//            }
+            if (!allSummaries.contains(sum)) {
+                allSummaries.add(sum);
+            }
         }
         return allSummaries;
     }
 
-    public void removeRoundSummary(RoundSummary roundSummary) {
-        roundSummaries.remove(roundSummary);
-    }
+
 
     //getters
     public List<Fishes> getFishCaughtAllRounds() {
@@ -100,14 +110,15 @@ public class TotalRounds {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds given list of fish to list of fishes, totalCaughtFish
+    // EFFECTS: if list of fishes caught on all rounds doesn't contain, given list of fish, add;
+    //          otherwise nothing
     public void addListOfFishCaught(Fishes fishes) {
         if (!fishCaughtAllRounds.contains(fishes)) {
             fishCaughtAllRounds.add(fishes);
         }
     }
 
-    // EFFECTS: gets avg total weight of fishes caught per round
+    // EFFECTS: returns avg total weight of fishes caught per round
     public double avgTotalWeight() {
         int sum = 0;
         for (Fishes f: fishCaughtAllRounds) {
@@ -121,7 +132,7 @@ public class TotalRounds {
         return formattedWeight;
     }
 
-    // EFFECTS: gets number of times largest was caught per round played
+    // EFFECTS: returns number of times largest was caught per round played
     public double largestCaughtPercentage() {
         int timesLargestCaught = 0;
         for (RoundSummary r: roundSummaries) {
@@ -137,13 +148,15 @@ public class TotalRounds {
     }
 
 
-
+    // EFFECTS: returns totalRounds as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("round summaries", roundSummariesToJson());
         return json;
     }
 
+
+    // EFFECTS: returns round summaries in totalRounds as a JSON array
     private JSONArray roundSummariesToJson() {
         JSONArray jsonArray = new JSONArray();
 

@@ -3,23 +3,24 @@ package model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+// Represents a round's summary with Fishes (details about fishes caught this round), and String summarizing round
 public class RoundSummary {
     private Fishes fishCaughtThisRound;
     private Fishes fishLeftInPond;
     private String roundSummary;
     private boolean isLargestCaught;
     private int numFishCaught;
-    private int tryNumToCatchLargest;
+    //private int tryNumToCatchLargest;
 
 
-
+    // EFFECTS: constructs a round summary with given Fishes and roundSummary; initializes empty list of fish
+    //          left in pond, isLargestCaught as false, and numFishCaught as 0
     public RoundSummary(Fishes fishes, String roundSummary) {
-
         this.fishCaughtThisRound = fishes;
-        this.fishLeftInPond = new Fishes();
         this.roundSummary = roundSummary;
+        this.fishLeftInPond = new Fishes();
         this.isLargestCaught = false;
-        this.tryNumToCatchLargest = 0;
+        //this.tryNumToCatchLargest = 0;
         this.numFishCaught = 0;
     }
 
@@ -69,6 +70,7 @@ public class RoundSummary {
         this.fishLeftInPond = fishes;
     }
 
+
     // EFFECTS: returns true if largest is in list of fish caught; false otherwise
     public boolean isLargestCaught() {
         for (Fish f: fishCaughtThisRound.getFishList()) {
@@ -80,10 +82,14 @@ public class RoundSummary {
         return false;
     }
 
+
+    // MODIFIES: this
+    // EFFECTS: adds fish to list of fish caught this round
     public void addFishCaught(Fish fish) {
         fishCaughtThisRound.addFish(fish);
     }
 
+    // EFFECTS: returns roundSummary as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("fishes caught", fishCaughtThisRound.toJson());
@@ -92,15 +98,7 @@ public class RoundSummary {
         return json;
     }
 
-    public JSONArray fishesCaughtToJson() {
-        JSONArray jsonArray = new JSONArray();
-        fishCaughtThisRound.toJson();
-//        for (Fish fish: fishCaughtThisRound.getFishList()) {
-//            jsonArray.put(fish.toJson());
-//        }
-        return jsonArray;
-    }
-
+    // EFFECTS: returns fishes in this round summary as a JSON array
     private JSONArray fishesToJson() {
         JSONArray jsonArray = new JSONArray();
 
