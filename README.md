@@ -2,9 +2,9 @@
 
 ## What will the application do?
 This is a fishing game with some challenges. To catch fish, the player needs to press the correct key (letter) that shows up. 
-The player has 2 challenges each game session:
+The player has 2 challenges each round:
 1. Try to catch the largest fish in the pond within a certain number of tries
-2. Try to score the highest total weight in comparison to other sessions
+2. Try to score the highest total weight in comparison to other rounds
 ## Who will use it?
 **Anyone** of any age can enjoy this fishing game! In general, it can be quick game to pass time. It can also be used 
 as a typing game, where the player uses proper keyboard finger placement to memorize key positions. There's flexibility
