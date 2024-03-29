@@ -34,3 +34,11 @@ and maybe continue adding functionality after completion.
 - As a user, I want to be able to load my previous sessions if I choose to
 - As a user, I want to be able to be able to see how many times largest was caught / round played
 - As a user, I want to be able to see average total weight
+
+# Instructions for Grader
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by typing the correct letter and pressing "Catch" button
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by choosing release option, checking box next to fish and "Confirm" button
+- You can locate my visual component by pressing "new game" button
+- You can save the state of my application by pressing "Yes" when asked if want to save game
+- You can reload the state of my application by pressing "load game" and "load" button
