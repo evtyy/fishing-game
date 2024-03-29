@@ -24,10 +24,8 @@ public class TerminalGame {
     private boolean fishReleased;
 
     private int tryNum;
-    private static final int TOTAL_FISH = 10;
     private static final int MAX_TRIES = 3;
-    private static final int MIN_WEIGHT = 1;
-    private static final int MAX_WEIGHT = 30;
+
 
     // EFFECTS: starts the terminal of the game
     public TerminalGame() {
@@ -54,7 +52,6 @@ public class TerminalGame {
             fishesCaught = new Fishes(); // resets list of fishesCaught
         }
         printAllRounds();
-        //saveOption();
     }
 
     public void run() {
@@ -105,13 +102,6 @@ public class TerminalGame {
         System.out.println("\tz -> print game stats");
         System.out.println("\tq -> quit game");
     }
-
-//    private void saveOption() {
-//        System.out.println("\nSave game?");
-//        System.out.println("\tyes -> save");
-//        System.out.println("\tno -> don't save");
-//    }
-
 
     // MODIFIES: this, fishesCaught, fishesTotal
     // EFFECTS: conducts a round of the game

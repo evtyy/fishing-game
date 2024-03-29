@@ -15,6 +15,7 @@ public class Game {
     private static final int MIN_WEIGHT = 1;
     private static final int MAX_WEIGHT = 30;
 
+    // EFFECTS: constructs a game with a pond of fishes of random weights
     public Game() {
         randomWeights = generateRandomIntegers(TOTAL_FISH, MIN_WEIGHT, MAX_WEIGHT);
         fishesTotal = new Fishes();

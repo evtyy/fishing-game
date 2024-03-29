@@ -19,6 +19,12 @@ With game familiarity, I can remain enthusiastic and eager to incorporate learni
 and maybe continue adding functionality after completion.
 
 ## User Stories
+### Phase 3:
+- As a user, I want to be able to add fish to my collection by typing and clicking a button
+- As a user, I want to be able to release caught fish by clicking a checkbox and button
+- As a user, I want to be able to view a summary of fish caught
+- As a user, I want to be able to save my game if I choose to
+- As a user, I want to be able to load my previous game if I choose to
 ### Phase 2:
 - As a user, I want to be able to add fish to my collection
 - As a user, I want to be able to release caught fish

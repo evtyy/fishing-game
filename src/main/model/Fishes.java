@@ -12,6 +12,7 @@ public class Fishes {
     private String dateCaught;
     private boolean isLargestCaught;
 
+    // EFFECTS: constructs an empty list of fishes
     public Fishes() {
         fishList = new ArrayList<>();
         this.totalWeight = 0;
