@@ -197,7 +197,8 @@ public class NewGamePanel extends JPanel {
             jsonWriter.openWriter();
             RoundSummary mostRecentSummary = totalRounds.getRoundSummaries().get(0);
             for (RoundSummary summary : totalRounds.getRoundSummaries()) {
-                if (summary.getFishCaughtThisRound().getDateCaught().compareTo(mostRecentSummary.getFishCaughtThisRound().getDateCaught()) > 0) {
+                String date = mostRecentSummary.getFishCaughtThisRound().getDateCaught();
+                if (summary.getFishCaughtThisRound().getDateCaught().compareTo(date) > 0) {
                     mostRecentSummary = summary;
                 }
             }
