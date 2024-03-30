@@ -2,15 +2,11 @@ package model;
 
 import org.json.JSONObject;
 
-import java.util.Random;
-
 // Represents a fish with a unique char, an int weight, and whether it is the largest
 public class Fish {
     private int weight;
     private boolean isLargest;
     private char letter;
-    private static final int MIN_WEIGHT = 1;
-    private static final int MAX_WEIGHT = 30;
 
     // constructor for testing
     // EFFECTS: constructs a fish with given letter

@@ -1,7 +1,5 @@
 package persistence;
 
-import model.Fishes;
-import model.Game;
 import model.TotalRounds;
 import org.json.JSONObject;
 

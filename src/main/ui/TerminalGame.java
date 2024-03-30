@@ -19,11 +19,9 @@ public class TerminalGame {
     private TotalRounds totalRounds;
     private RoundSummary roundSummary;
     private Fishes fishesCaught;
-    private List<String> allSummaries;
     private boolean playAgain;
     private boolean fishReleased;
 
-    private int tryNum;
     private static final int MAX_TRIES = 3;
 
 
@@ -54,6 +52,7 @@ public class TerminalGame {
         printAllRounds();
     }
 
+    // EFFECTS: runs the game
     public void run() {
         boolean quitGame = false;
         String command = null;
@@ -72,6 +71,7 @@ public class TerminalGame {
         }
     }
 
+    // EFFECTS: determines what each letter does when user interacts
     private void processCommand(String command) {
         if (command.equals("l")) {
             loadGame();
@@ -90,7 +90,7 @@ public class TerminalGame {
         }
     }
 
-
+    // EFFECTS: displays a menu of options for user
     private void startingMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tn -> new game");
@@ -108,7 +108,6 @@ public class TerminalGame {
     public void playRound(int maxTries) {
         Random random = new Random();
         Date date = new Date();
-        tryNum = 0;
         fishesCaught.setDateCaught(date.toString());
         for (int i = 0; i < maxTries; i++) {
             int fishAvail = game.getFishesTotal().getFishList().size();
@@ -122,7 +121,6 @@ public class TerminalGame {
                 game.getFishesTotal().getFishList().remove(randomIndex);
                 System.out.println("You caught the fish with weight " + currentFish.getWeight() + " lb!");
                 if (currentFish.isLargest()) {
-                    tryNum = i;
                     System.out.println("Largest fish caught!");
                 }
             } else {
@@ -149,7 +147,6 @@ public class TerminalGame {
             summary.append("Fish caught with weight: ").append(f.getWeight()).append(" lb\n");
         }
         roundSummary = new RoundSummary(fishesCaught, summary.toString());
-        //roundSummary.setTryNumToCatchLargest(tryNum);
         return summary.toString();
     }
 
@@ -167,10 +164,7 @@ public class TerminalGame {
     public boolean playAgainOption() {
         System.out.println("Play another round? y or n");
         char playerInput = input.next().charAt(0);
-        if (playerInput == 'y') {
-            return true;
-        }
-        return false;
+        return playerInput == 'y';
     }
 
     // REQUIRES: fishesCaught is non-empty
@@ -217,13 +211,13 @@ public class TerminalGame {
 
     // EFFECTS: prints fish weights of fish left in pond (including released)
     public void printWeights() {
-        //fishesTotal.sortFishByWeight();
         System.out.println("Fish left in pond: ");
         for (Fish f : game.getFishesTotal().getFishList()) {
             System.out.println("Fish with weight: " + f.getWeight() + " lb");
         }
     }
 
+    // EFFECTS: prints fish caught for all rounds
     private void printRounds() {
         System.out.println("All rounds played:");
         List<Fishes> fishes = totalRounds.getFishCaughtAllRounds();
@@ -233,6 +227,7 @@ public class TerminalGame {
         }
     }
 
+    // EFFECTS: prints game stats
     private void printStats() {
         System.out.println("Game stats: ");
         System.out.println("Largest caught: " + totalRounds.largestCaughtPercentage() + "%");
@@ -241,9 +236,9 @@ public class TerminalGame {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: saves game to file
     private void saveGame() {
-//        System.out.println("Set save file name?");
-//        char playerInput = input.next().charAt(0);
         try {
             jsonWriter.openWriter();
             jsonWriter.write(totalRounds);

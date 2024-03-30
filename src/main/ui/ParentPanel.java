@@ -1,9 +1,5 @@
 package ui;
 
-import model.Fishes;
-import persistence.JsonReader;
-import persistence.JsonWriter;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,12 +8,6 @@ import java.awt.event.ActionListener;
 // represents a JPanel of CardLayout that holds JPanels for game, load game, and instructions
 // references CardLayoutDemo https://docs.oracle.com/javase%2Ftutorial%2Fuiswing%2F%2F/layout/card.html
 public class ParentPanel extends JPanel implements ActionListener {
-    private static final String JSON_STORE = "./data/game.json";
-    private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
-    private JsonReader jsonReader = new JsonReader(JSON_STORE);
-    private FishDrawing fishDrawing;
-    private Fishes fishesCaught;
-
     private JPanel cards;
     private NewGamePanel newGamePanel;
     private JPanel loadGamePanel;
@@ -36,8 +26,6 @@ public class ParentPanel extends JPanel implements ActionListener {
         newButton = new JButton("new game");
         loadButton = new JButton("load game");
         instructionsButton = new JButton("how to play");
-        fishesCaught = new Fishes();
-        fishDrawing = new FishDrawing();
         newGamePanel = new NewGamePanel();
         addCardsToPanel();
     }

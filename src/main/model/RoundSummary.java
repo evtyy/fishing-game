@@ -9,8 +9,6 @@ public class RoundSummary {
     private Fishes fishLeftInPond;
     private String roundSummary;
     private boolean isLargestCaught;
-    private int numFishCaught;
-    //private int tryNumToCatchLargest;
 
 
     // EFFECTS: constructs a round summary with given Fishes and roundSummary; initializes empty list of fish
@@ -20,8 +18,6 @@ public class RoundSummary {
         this.roundSummary = roundSummary;
         this.fishLeftInPond = new Fishes();
         this.isLargestCaught = false;
-        //this.tryNumToCatchLargest = 0;
-        this.numFishCaught = 0;
     }
 
     // getters
@@ -32,10 +28,6 @@ public class RoundSummary {
     public int getNumFishCaught() {
         return fishCaughtThisRound.getFishList().size();
     }
-
-//    public int getTryNumToCatchLargest() {
-//        return tryNumToCatchLargest;
-//    }
 
     public String getRoundSummary() {
         return roundSummary;
@@ -50,21 +42,9 @@ public class RoundSummary {
         this.fishCaughtThisRound = fishes;
     }
 
-//    public void setNumFishCaught() {
-//        this.numFishCaught = fishCaughtThisRound.getFishList().size();
-//    }
-
     public void setLargestCaught() {
         this.isLargestCaught = true;
     }
-
-//    public void setTryNumToCatchLargest(int tryNum) {
-//        this.tryNumToCatchLargest = tryNum;
-//    }
-
-//    public void setRoundSummary(String summary) {
-//        this.roundSummary = summary;
-//    }
 
     public void setFishLeftInPond(Fishes fishes) {
         this.fishLeftInPond = fishes;

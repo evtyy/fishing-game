@@ -104,7 +104,7 @@ public class JsonReader {
     private void addFish(Fishes fishes, JSONObject jsonObject) {
         String letter = jsonObject.getString("letter");
         char c = letter.charAt(0);
-        Integer weight = jsonObject.getInt("weight");
+        int weight = jsonObject.getInt("weight");
         boolean isLargest = jsonObject.getBoolean("isLargest");
         Fish fish = new Fish(c);
         fish.setWeight(weight);
@@ -114,27 +114,4 @@ public class JsonReader {
         fishes.addFish(fish);
 
     }
-
-
-    // MODIFIES:
-    // EFFECTS: parses list of list of fish from JSON object and adds them to totalRounds
-//    private void addListOfFishes(TotalRounds totalRounds, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("rounds");
-//        for (Object json : jsonArray) {
-//            JSONObject nextFishList = (JSONObject) json;
-//            addFishes(totalRounds, nextFishList);
-//        }
-//    }
-
-    // MODIFIES: fishes
-    // EFFECTS: parses list of fish from JSON object and adds them to total rounds
-//    private void addFishes(TotalRounds totalRounds, JSONObject jsonObject) {
-//        Fishes fishes = new Fishes();
-//        JSONArray jsonArray = jsonObject.getJSONArray("fishes");
-//        for (Object json : jsonArray) {
-//            JSONObject nextFish = (JSONObject) json;
-//            addFish(fishes, nextFish);
-//        }
-//        totalRounds.addListOfFishCaught(fishes);
-//    }
 }
