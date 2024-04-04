@@ -45,6 +45,18 @@ public class FishesTest {
     }
 
     @Test
+    void testCatchFish() {
+        assertTrue(fishList.getFishList().isEmpty());
+        fishList.catchFish(f1);
+        fishList.catchFish(f2);
+        fishList.catchFish(f3);
+        assertEquals(3, fishList.getFishList().size());
+        assertTrue(fishList.getFishList().contains(f1));
+        assertEquals(f2, fishList.getFishList().get(1));
+        assertTrue(fishList.getFishList().contains(f3));
+    }
+
+    @Test
     void testReleaseFish() {
         fishList.addFish(f1);
         fishList.addFish(f2);

@@ -46,7 +46,7 @@ public class GameGUI extends JFrame implements WindowListener {
     }
 
     // references AlarmSystem ScreenPrinter's printLog method
-    // EFFECTS: prints event log to terminal
+    // EFFECTS: prints event log to console
     public void printLog(EventLog el) {
         for (Event event : el) {
             System.out.println(event.toString() + "\n");

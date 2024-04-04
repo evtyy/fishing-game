@@ -46,7 +46,8 @@ public class Fishes {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds given fish to list of fish and its weight to totalWeight
+    // EFFECTS: adds given fish to list of fish and its weight to totalWeight;
+    //          adds the event of catching fish to event log
     public void catchFish(Fish fish) {
         fishList.add(fish);
         totalWeight += fish.getWeight();
@@ -57,7 +58,8 @@ public class Fishes {
 
     // REQUIRES: list of fish contains given fish
     // MODIFIES: this
-    // EFFECTS: removes given fish from list of fish and its weight from totalWeight
+    // EFFECTS: removes given fish from list of fish and its weight from totalWeight;
+    //          adds the event of releasing fish to event log
     public void releaseFish(Fish fish) {
         fishList.remove(fish);
         totalWeight -= fish.getWeight();
