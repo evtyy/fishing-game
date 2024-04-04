@@ -45,12 +45,23 @@ public class Fishes {
         totalWeight += fish.getWeight();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds given fish to list of fish and its weight to totalWeight
+    public void catchFish(Fish fish) {
+        fishList.add(fish);
+        totalWeight += fish.getWeight();
+        EventLog.getInstance().logEvent(new Event("Caught fish with weight: " + fish.getWeight() + " lb"));
+    }
+
+
+
     // REQUIRES: list of fish contains given fish
     // MODIFIES: this
     // EFFECTS: removes given fish from list of fish and its weight from totalWeight
     public void releaseFish(Fish fish) {
         fishList.remove(fish);
         totalWeight -= fish.getWeight();
+        EventLog.getInstance().logEvent(new Event("Released fish with weight: " + fish.getWeight() + " lb"));
     }
 
     // EFFECTS: returns the total weight of all fish in list
@@ -93,12 +104,6 @@ public class Fishes {
         json.put("fishes", fishesToJson());
         return json;
     }
-
-//    public JSONObject fishesLeftToJson() {
-//        JSONObject json = new JSONObject();
-//        json.put("fish left in pond", fishesToJson());
-//        return json;
-//    }
 
     // EFFECTS: returns things in this workroom as a JSON array
     private JSONArray fishesToJson() {

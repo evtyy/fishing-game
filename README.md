@@ -42,3 +42,20 @@ and maybe continue adding functionality after completion.
 - You can locate my visual component by pressing "new game" button
 - You can save the state of my application by pressing "Yes" when asked if want to save game
 - You can reload the state of my application by pressing "load game" and "load" button
+
+### Phase 4: Task 2 (Sample of Events)
+Thu Apr 04 13:30:06 PDT 2024
+Caught fish with weight: 21 lb
+
+Thu Apr 04 13:30:10 PDT 2024
+Caught fish with weight: 14 lb
+
+Thu Apr 04 13:30:13 PDT 2024
+Caught fish with weight: 2 lb
+
+Thu Apr 04 13:30:20 PDT 2024
+Released fish with weight: 14 lb
+
+Thu Apr 04 13:30:20 PDT 2024
+Released fish with weight: 2 lb
+

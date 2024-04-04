@@ -72,7 +72,7 @@ public class NewGamePanel extends JPanel {
                 if (!userInputText.isEmpty()) {
                     char userInput = userInputText.charAt(0);
                     if (userInput == currentFish.getLetter()) {
-                        fishesCaught.addFish(currentFish);
+                        fishesCaught.catchFish(currentFish);
                         game.getFishesTotal().getFishList().remove(randomIndex);
                         System.out.println("You caught the fish with weight " + currentFish.getWeight() + " lb!");
 

@@ -22,7 +22,7 @@ public class ParentPanel extends JPanel implements ActionListener {
     // EFFECTS: constructs a JPanel and initializes fields
     public ParentPanel() {
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
         newButton = new JButton("new game");
         loadButton = new JButton("load game");
         instructionsButton = new JButton("how to play");
@@ -109,6 +109,7 @@ public class ParentPanel extends JPanel implements ActionListener {
         cl.show(cards, cardName);
     }
 
+    // MODIFIES: this
     // EFFECTS: generates the instructions for how to play
     private JTextArea generateInstructions() {
         JTextArea textArea = new JTextArea("This is a fishing game with challenges. To catch fish, "
@@ -134,6 +135,4 @@ public class ParentPanel extends JPanel implements ActionListener {
         card.add(buttonPanel, BorderLayout.SOUTH);
         return card;
     }
-
-
 }

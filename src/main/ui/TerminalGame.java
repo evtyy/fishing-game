@@ -117,7 +117,7 @@ public class TerminalGame {
             char playerInput = input.next().charAt(0);
 
             if (playerInput == currentFish.getLetter()) {
-                fishesCaught.addFish(currentFish);
+                fishesCaught.catchFish(currentFish);
                 game.getFishesTotal().getFishList().remove(randomIndex);
                 System.out.println("You caught the fish with weight " + currentFish.getWeight() + " lb!");
                 if (currentFish.isLargest()) {
