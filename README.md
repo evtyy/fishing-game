@@ -59,29 +59,29 @@ Thu Apr 04 13:30:20 PDT 2024
 Released fish with weight: 2 lb
 
 ### Phase 4: Task 3 (Design Reflection)
-Some ways that I could make my code more robust are re-evaluating if each class follows the Single Responsibility 
-Principle (SRP) and consider implementing the Observer or Singleton Pattern. Looking at my UML diagram, a lot of classes
-have an association with `Fishes` — high coupling. This prompts me to reconsider whether `Fishes` adheres to the “Single
-Responsibility Principle” and if it should be an abstract class or interface with new subclasses like `FishesCaught` and
-`FishesTotal` to handle the two lists of `Fish`. Then, I can consider implementing the Observer Pattern. To illustrate, 
-classes that keep track of the state of `FishesCaught` (Subject), like `RoundSummary` and `NewGamePanel` can be 
-Observers. Moreover, I tried implementing the Singleton Pattern, where `TotalRounds` is the Singleton because if the 
-user decides to play another round, there should only be one instance of `TotalRounds` that keeps track of all rounds 
-played. `TotalRounds` can’t be a static class because `NewGamePanel` and `TerminalGame` need to use it as an object and 
-modify it. However, I realized the global state caused my previous passing tests fail and broke some of the 
-functionality like viewing statistics across rounds played in the console game. If I had more time, I could probably 
-find a way to implement the Singleton Pattern.
+Some ways that I could refactor my code to make more robust, intuitive, and easier for future improvements involve 
+re-evaluating if each class follows the Single Responsibility Principle (SRP) and consider implementing the Observer or
+Singleton Pattern. Looking at my UML diagram, a lot of classes are associated with `Fishes` — high coupling. This 
+prompts me to reconsider whether `Fishes` adheres to the SRP and if it should be an abstract class or interface with 
+new subclasses like `FishesCaught` and `FishesTotal` to handle the two lists of `Fish`. Then, I can consider 
+implementing the Observer Pattern. To illustrate, classes that keep track of the state of `FishesCaught` (Subject), like
+`RoundSummary` and `NewGamePanel` can be Observers. Moreover, I tried implementing the Singleton Pattern, where 
+`TotalRounds` is the Singleton because if the user decides to play multiple rounds, there should only be one instance of
+`TotalRounds` that keeps track of all rounds played. `TotalRounds` can’t be a static class because `NewGamePanel` and 
+`TerminalGame` need to use it as an object and modify it. However, I realized the global state caused my previous 
+passing tests fail and broke some of the functionality like viewing statistics across rounds played in the console game.
+If I had more time, I could probably find a way to implement the Singleton Pattern.
 
-Additional ways include adding exceptions, removing code duplication to improve coupling, and maybe implementing a 
-design pattern like the Singleton Pattern. To get rid of REQUIRES clause of 
+Additional ways include adding exceptions, removing code duplication to improve coupling, and considering the One 
+Method, One Responsibility design principle. To get rid of the REQUIRES clause of 
 `removeRoundSummary(RoundSummary roundSummary)` in `TotalRounds` and `releaseFish(Fish fish)` in `Fishes`, I would 
-create an exception like `NotFoundException` to deal with the case when the list doesn't contain the given object. 
-For code duplication in the same class, I've already extracted duplicated code to a new method, like 
-`showPopup(String message, int delayTime)` in `NewGamePanel` and `createCard(String cardName)` in ParentPanel. 
-For code duplication in different classes, like `isLargestCaught()` in `Fishes` and `RoundSummary` that only differ 
-slightly, I could use `Fishes.isLargestCaught()` in `RoundSummary` like 
-`RoundSummary.getFishCaughtThisRound().isLargestCaught()`. Similarly, to follow the “One Method, One Responsibility” 
-design principle, for complex methods, I can continue to extract helper methods with intuitive names to help with code 
-readability, like `NewGamePanel.fishCaught()` and `NewGamePanel.fishSwamAway()` for 
-`NewGamePanel.catchButtonActionListener()`.
+create an exception like `NotFoundException` to handle the case when the list doesn't contain the given object. For 
+code duplication in the same class, I've already extracted duplicated code to a new method, like 
+`showPopup(String message, int delayTime)` in `NewGamePanel` and `createCard(String cardName)` in ParentPanel. For code 
+duplication in different classes, like `isLargestCaught()` in `Fishes` and `RoundSummary` that only differ slightly, I 
+could use `Fishes.isLargestCaught()` in `RoundSummary` like `RoundSummary.getFishCaughtThisRound().isLargestCaught()`. 
+Similarly, to follow the One Method, One Responsibility design principle, for complex methods, I can continue to extract
+helper methods with intuitive names to help with code readability, like `NewGamePanel.fishCaught()` and 
+`NewGamePanel.fishSwamAway()` for `NewGamePanel.catchButtonActionListener()`. These are a few refactoring strategies I 
+can use to increase robustness, readability, and ease for future additions of functionality.
 
