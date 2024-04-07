@@ -1,4 +1,4 @@
-package ui;
+package ui.gui;
 
 import model.Event;
 import model.EventLog;
@@ -8,10 +8,10 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-// represents a game GUI
+// Represents a game GUI
 public class GameGUI extends JFrame implements WindowListener {
 
-    // EFFECTS: sets up the JFrame for the game
+    // EFFECTS: constructs a JFrame for GameGUI and initializes its components
     public GameGUI() {
         setTitle("Fishing Game");
         addWindowListener(this);
@@ -40,13 +40,14 @@ public class GameGUI extends JFrame implements WindowListener {
 
     }
 
+    // EFFECTS: when window is closed, print events
     @Override
     public void windowClosed(WindowEvent e) {
         printLog(EventLog.getInstance());
     }
 
     // references AlarmSystem ScreenPrinter's printLog method
-    // EFFECTS: prints event log to console
+    // EFFECTS: prints events in EventLog to console
     public void printLog(EventLog el) {
         for (Event event : el) {
             System.out.println(event.toString() + "\n");

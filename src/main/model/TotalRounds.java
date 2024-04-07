@@ -32,8 +32,8 @@ public class TotalRounds {
     }
 
     // MODIFIES: this
-    // EFFECTS: if list of round summaries doesn't contain given round summary, adds it to list of round summaries;
-    //          nothing otherwise
+    // EFFECTS: if list of round summaries doesn't contain given round summary,
+    //          adds it to list of round summaries; nothing otherwise
     public void addRoundSummary(RoundSummary roundSummary) {
         if (!roundSummaries.contains(roundSummary)) {
             roundSummaries.add(roundSummary);
@@ -41,8 +41,9 @@ public class TotalRounds {
         }
     }
 
+    // REQUIRES: list of round summaries contains given roundSummary
     // MODIFIES: this
-    // EFFECTS: removes round summary from list of round summaries
+    // EFFECTS: removes given round summary from list of round summaries
     public void removeRoundSummary(RoundSummary roundSummary) {
         roundSummaries.remove(roundSummary);
     }
@@ -117,7 +118,7 @@ public class TotalRounds {
     }
 
     // MODIFIES: this
-    // EFFECTS: if list of fishes caught on all rounds doesn't contain, given list of fish, add;
+    // EFFECTS: if list of fishes caught on all rounds doesn't contain given list of fish, add;
     //          otherwise nothing
     public void addListOfFishCaught(Fishes fishes) {
         if (!fishCaughtAllRounds.contains(fishes)) {

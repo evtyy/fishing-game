@@ -1,4 +1,4 @@
-package ui;
+package ui.gui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,6 @@ public class ParentPanel extends JPanel implements ActionListener {
     private JButton newButton;
     private JButton loadButton;
     private JButton instructionsButton;
-    private JButton backButton;
 
 
     // EFFECTS: constructs a JPanel and initializes fields
@@ -77,8 +76,12 @@ public class ParentPanel extends JPanel implements ActionListener {
     private void loadGameOption() {
         JLabel loadGameLabel = new JLabel("load game?");
         JButton loadGameButton = new JButton("load");
+
         loadGamePanel.add(loadGameLabel, BorderLayout.NORTH);
-        loadGamePanel.add(loadGameButton, BorderLayout.CENTER);
+
+        JPanel loadButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        loadButtonPanel.add(loadGameButton);
+        loadGamePanel.add(loadButtonPanel, BorderLayout.CENTER);
 
         loadGameButton.addActionListener(new ActionListener() {
             @Override
@@ -112,10 +115,14 @@ public class ParentPanel extends JPanel implements ActionListener {
     // MODIFIES: this
     // EFFECTS: generates the instructions for how to play
     private JTextArea generateInstructions() {
-        JTextArea textArea = new JTextArea("This is a fishing game with challenges. To catch fish, "
-                + "press the correct key (letter) that shows up. \n"
-                + "The challenge for each game:\n"
-                + "Try to catch the largest fish in the pond within 3 tries");
+        JTextArea textArea = new JTextArea();
+        textArea.setText("This is a fishing game with challenges. \n\nTo catch fish, "
+                + "type the correct key (letter) displayed in the fish's bubble and click 'catch'. "
+                + "Recast the line to try again. \n\n"
+                + "The challenge for each round:\n"
+                + "Try to catch the largest fish in the pond within 3 tries \n\n"
+                + "If you don't catch it within 3 tries, play again!");
+        textArea.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
@@ -128,7 +135,7 @@ public class ParentPanel extends JPanel implements ActionListener {
         JPanel card = new JPanel(new BorderLayout());
         JLabel label = new JLabel(cardName);
         card.add(label, BorderLayout.CENTER);
-        backButton = new JButton("back");
+        JButton backButton = new JButton("back");
         backButton.addActionListener(e -> cardLayout.first(cards));
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.add(backButton);

@@ -16,6 +16,8 @@ public class Fish {
         this.isLargest = false;
     }
 
+    // EFFECTS: returns a string representation of fish with weight and if it is largest
+    @Override
     public String toString() {
         return "Fish weighing: " + getWeight() + " is largest: " + isLargest();
     }
@@ -45,7 +47,7 @@ public class Fish {
         return isLargest;
     }
 
-
+    // EFFECTS: returns fish as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("letter", Character.toString(letter));

@@ -1,4 +1,4 @@
-package ui;
+package ui.gui;
 
 import model.*;
 import persistence.JsonReader;
@@ -22,7 +22,6 @@ public class NewGamePanel extends JPanel {
     private JsonReader jsonReader = new JsonReader(JSON_STORE);
 
     private Game game;
-    private RoundSummary roundSummary;
     private FishDrawing fishDrawing;
     private JTextField userInputField;
     private JButton catchButton;
@@ -31,30 +30,22 @@ public class NewGamePanel extends JPanel {
     JButton cancelButton;
 
     private Fishes fishesCaught;
-    private static final int MAX_TRIES = 3;
-    private int recastButtonCounter = 0;
-    private int catchButtonCounter = 0;
-    private int randomIndex;
     private Fish currentFish;
-    private TotalRounds totalRounds;
-    private boolean gameLoaded;
+    private static TotalRounds totalRounds = new TotalRounds();
+
     private JPanel fishPanel;
     private JFrame releaseFishFrame;
-
+    private static final int MAX_TRIES = 3;
+    private int recastButtonCounter;
+    private int catchButtonCounter;
+    private int randomIndex;
+    private boolean gameLoaded;
 
     // MODIFIES: this
-    // EFFECTS: constructs a JPanel, initializes variables
+    // EFFECTS: constructs a JPanel with a user input panel and initializes a new game
     public NewGamePanel() {
-        fishesCaught = new Fishes();
-        fishDrawing = new FishDrawing();
-        totalRounds = new TotalRounds();
-
         setLayout(new BorderLayout());
-        add(fishDrawing, BorderLayout.CENTER);
-
         initUserInputPanel();
-        catchButtonActionListener();
-        recastButtonActionListener();
         newGame();
     }
 
@@ -63,25 +54,18 @@ public class NewGamePanel extends JPanel {
     private void catchButtonActionListener() {
         catchButton.addActionListener(new ActionListener() {
             @Override
-            // MODIFIES: this, fishesCaught, game
+            // MODIFIES: this
             // EFFECTS: can only catch fish MAX_TRIES (3) times:
-            //          if user input is correct, add fish to fishesCaught and remove from drawing;
-            //          if not, do nothing
+            //          when pressed, if user input is correct, do fishesCaught();
+            //          if not, do fishSwamAway()
             public void actionPerformed(ActionEvent e) {
                 String userInputText = userInputField.getText();
                 if (!userInputText.isEmpty()) {
                     char userInput = userInputText.charAt(0);
                     if (userInput == currentFish.getLetter()) {
-                        fishesCaught.catchFish(currentFish);
-                        game.getFishesTotal().getFishList().remove(randomIndex);
-                        System.out.println("You caught the fish with weight " + currentFish.getWeight() + " lb!");
-
-                        fishDrawing.setCaught(true);
-                        fishDrawing.repaint();
-
-                        if (currentFish.isLargest()) {
-                            System.out.println("Largest fish caught!");
-                        }
+                        fishCaught();
+                    } else {
+                        fishSwamAway();
                     }
                 }
                 catchButtonCounter++;
@@ -92,21 +76,56 @@ public class NewGamePanel extends JPanel {
         });
     }
 
+    // MODIFIES: fishDrawing, fishesCaught, game
+    // EFFECTS: updates fishDrawing for correct input
+    private void fishCaught() {
+        fishesCaught.catchFish(currentFish);
+        game.getFishesTotal().getFishList().remove(randomIndex);
+        fishDrawing.setCaught(true);
+        fishDrawing.setSwamAway(false);
+        fishDrawing.repaint();
+    }
+
+    // MODIFIES: fishDrawing
+    // EFFECTS: updates fishDrawing for wrong input
+    private void fishSwamAway() {
+        fishDrawing.setCaught(false);
+        fishDrawing.setSwamAway(true);
+        fishDrawing.repaint();
+        showPopup("Wrong letter! Fish swam away", 2000);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: constructs a pop-up message
+    private void showPopup(String message, int delayTime) {
+        JOptionPane pane = new JOptionPane(message);
+        JDialog dialog = pane.createDialog("");
+        Timer timer = new Timer(delayTime, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+        dialog.setVisible(true);
+    }
+
     // EFFECTS: adds an ActionListener to recastButton, determines what happens when recastButton pressed
     private void recastButtonActionListener() {
         recastButton.addActionListener(new ActionListener() {
             @Override
             // MODIFIES: this, fishDrawing, recastButton
-            // EFFECTS: disable recastButton when MAX_TRIES reached
+            // EFFECTS: when pressed, recast line; disable recastButton when MAX_TRIES reached
             public void actionPerformed(ActionEvent e) {
                 fishDrawing.setCaught(false);
+                fishDrawing.setSwamAway(false);
                 playRound();
 
                 recastButtonCounter++;
                 System.out.println("times reset button pressed: " + recastButtonCounter);
                 if (recastButtonCounter >= 2) {
                     recastButton.setEnabled(false);
-                    JOptionPane.showMessageDialog(null, "last try!");
+                    showPopup("Last try!", 1200);
 
                 }
             }
@@ -120,11 +139,14 @@ public class NewGamePanel extends JPanel {
         userInputField = new JTextField(1);
         catchButton = new JButton("Catch");
         recastButton = new JButton("Recast");
+        recastButton.setEnabled(true);
 
         inputPanel.add(new JLabel("Type the character for the fish: "));
         inputPanel.add(userInputField);
         inputPanel.add(catchButton);
         inputPanel.add(recastButton);
+        catchButtonActionListener();
+        recastButtonActionListener();
         add(inputPanel, BorderLayout.SOUTH);
     }
 
@@ -139,7 +161,7 @@ public class NewGamePanel extends JPanel {
         for (Fish f : fishesCaught.getFishList()) {
             summary.append("Fish caught with weight: ").append(f.getWeight()).append(" lb\n");
         }
-        roundSummary = new RoundSummary(fishesCaught, summary.toString());
+        RoundSummary roundSummary = new RoundSummary(fishesCaught, summary.toString());
         roundSummary.setFishLeftInPond(game.getFishesTotal());
         return roundSummary;
     }
@@ -149,7 +171,7 @@ public class NewGamePanel extends JPanel {
     private void gameOverWindow() {
         totalRounds.addRoundSummary(getRoundSummary());
         JPanel messagePanel = new JPanel(new BorderLayout());
-        JLabel gameOverLabel = new JLabel("Game over!");
+        JLabel gameOverLabel = new JLabel("game over!");
         messagePanel.add(gameOverLabel, BorderLayout.NORTH);
 
         // summary of the fish caught
@@ -165,26 +187,23 @@ public class NewGamePanel extends JPanel {
                 JOptionPane.YES_NO_OPTION);
 
         if (option == JOptionPane.YES_OPTION) {
-            releaseFishOption();
+            showReleaseFishOption();
         } else {
-            saveGameOption();
+            showPlayAgainOption();
         }
-
     }
 
     // MODIFIES: this
     // EFFECTS: displays option to save game
-    private void saveGameOption() {
+    private void showSaveGameOption() {
         JPanel messagePanel = new JPanel();
         messagePanel.setLayout(new BorderLayout());
 
-        JLabel saveGameLabel = new JLabel("Save game option");
+        JLabel saveGameLabel = new JLabel("save game?");
         messagePanel.add(saveGameLabel, BorderLayout.NORTH);
 
-        int option = JOptionPane.showConfirmDialog(null, messagePanel, "save game?", JOptionPane.YES_NO_OPTION);
+        int option = JOptionPane.showConfirmDialog(null, messagePanel, "Save game option", JOptionPane.YES_NO_OPTION);
 
-        System.out.println(fishesCaught.getFishList().size());
-        totalRounds.addListOfFishCaught(fishesCaught);
         if (option == JOptionPane.YES_OPTION) {
             saveGame();
         }
@@ -195,17 +214,7 @@ public class NewGamePanel extends JPanel {
     private void saveGame() {
         try {
             jsonWriter.openWriter();
-            RoundSummary mostRecentSummary = totalRounds.getRoundSummaries().get(0);
-            for (RoundSummary summary : totalRounds.getRoundSummaries()) {
-                String date = mostRecentSummary.getFishCaughtThisRound().getDateCaught();
-                if (summary.getFishCaughtThisRound().getDateCaught().compareTo(date) > 0) {
-                    mostRecentSummary = summary;
-                }
-            }
-            TotalRounds mostRecentTotalRounds = new TotalRounds();
-            mostRecentTotalRounds.addRoundSummary(mostRecentSummary);
-
-            jsonWriter.write(mostRecentTotalRounds);
+            jsonWriter.write(totalRounds);
             jsonWriter.closeWriter();
             System.out.println("Saved game to " + JSON_STORE);
         } catch (FileNotFoundException e) {
@@ -225,14 +234,13 @@ public class NewGamePanel extends JPanel {
         } catch (IOException e) {
             System.out.println("Unable to load from file: " + JSON_STORE);
         }
-        fishesCaught = totalRounds.getFishCaughtAllRounds().get(0);
         showSummary();
         newGame();
     }
 
     // MODIFIES: this, releaseFishFrame, fishPanel
     // EFFECTS: generates and displays a JFrame with checkboxes for releasing fish
-    private void releaseFishOption() {
+    private void showReleaseFishOption() {
         releaseFishFrame = new JFrame("release fish");
         releaseFishFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -267,7 +275,7 @@ public class NewGamePanel extends JPanel {
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 releaseFishFrame.dispose();
-                saveGameOption();
+                showSaveGameOption();
             }
         });
     }
@@ -295,7 +303,7 @@ public class NewGamePanel extends JPanel {
                 }
                 releaseFishFrame.dispose();
                 showSummary();
-                saveGameOption();
+                showPlayAgainOption();
             }
         });
     }
@@ -315,22 +323,57 @@ public class NewGamePanel extends JPanel {
         textArea.setEditable(false);
 
         textArea.append("Summary: \n");
-        for (Fish f : fishesCaught.getFishList()) {
-            textArea.append("Fish letter: " + f.getLetter() + ", Weight: " + f.getWeight() + "\n");
+        if (!gameLoaded) {
+            for (Fish f : fishesCaught.getFishList()) {
+                textArea.append("Fish letter: " + f.getLetter() + ", Weight: " + f.getWeight() + "\n");
+            }
+            textArea.append("Largest caught?: " + fishesCaught.isLargestCaught() + "\n\n");
+        } else {
+            for (Fishes fishes : totalRounds.getFishCaughtAllRounds()) {
+                textArea.append(fishes.getDateCaught() + "\n");
+                for (Fish f : fishes.getFishList()) {
+                    textArea.append("Fish letter: " + f.getLetter() + ", Weight: " + f.getWeight() + "\n");
+                }
+                textArea.append("Largest caught?: " + fishes.isLargestCaught() + "\n\n");
+            }
         }
-        textArea.append("Largest caught?: " + fishesCaught.isLargestCaught());
-
         return textArea;
     }
 
     // EFFECTS: starts a new game
     public void newGame() {
+        fishesCaught = new Fishes();
+        recastButtonCounter = 0;
+        catchButtonCounter = 0;
+        fishDrawing = new FishDrawing();
+        add(fishDrawing, BorderLayout.CENTER);
+
         if (!gameLoaded) {
             game = new Game();
-        } else {
-            fishesCaught = totalRounds.getFishCaughtAllRounds().get(0);
         }
         playRound();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: displays option to play again
+    private void showPlayAgainOption() {
+        JPanel messagePanel = new JPanel();
+        messagePanel.setLayout(new BorderLayout());
+
+        JLabel playAgainLabel = new JLabel("play again?");
+        messagePanel.add(playAgainLabel, BorderLayout.NORTH);
+
+        int option = JOptionPane.showConfirmDialog(null, messagePanel,
+                "Play again option", JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.getContentPane().removeAll();
+            topFrame.add(new NewGamePanel());
+            topFrame.pack();
+            topFrame.setLocationRelativeTo(null);
+        } else {
+            showSaveGameOption();
+        }
     }
 
     // EFFECTS: sets whether game was loaded

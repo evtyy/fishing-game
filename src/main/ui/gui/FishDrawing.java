@@ -1,10 +1,10 @@
-package ui;
+package ui.gui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-// represents a fish drawing on a JPanel
+// Represents a fish drawing on a JPanel
 public class FishDrawing extends JPanel {
     private static final int FISH_BODY_X = 180;
     private static final int FISH_BODY_Y = 170;
@@ -12,6 +12,7 @@ public class FishDrawing extends JPanel {
     private static final int FISH_HEIGHT = 50;
     private char letter;
     private boolean isCaught;
+    private boolean swamAway;
 
     // EFFECT: constructs a fish drawing
     public FishDrawing() {
@@ -28,9 +29,15 @@ public class FishDrawing extends JPanel {
         repaint();
     }
 
+    public void setSwamAway(boolean swamAway) {
+        this.swamAway = swamAway;
+        repaint();
+    }
+
     @Override
-    // MODIFIES: this
-    // EFFECTS: paints a fish with fishing rod in a pond
+    // MODIFIES: g
+    // EFFECTS: if fish isn't caught and didn't swim away, paints a fish with fishing rod in a pond;
+    //          if fish is caught, paint caught drawing; otherwise paint a fishing rod
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -41,28 +48,36 @@ public class FishDrawing extends JPanel {
         g2D.setColor(new Color(96, 173, 201));
         g2D.fillRect(0, 100, getWidth(), getHeight());
 
-
         drawFishingRod(g2D);
-        if (!isCaught) {
+        if (!isCaught && !swamAway) {
             drawTail(g2D);
             drawBody(g2D);
             drawBubbles(g2D);
             drawLetter(g2D);
+        } else if (isCaught) {
+            drawCaught(g2D);
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: draws the fish letter
+    // MODIFIES: g2D
+    // EFFECTS: draws message for when fish is caught
+    public void drawCaught(Graphics2D g2D) {
+        g2D.setColor(new Color(196, 145, 36));
+        g2D.setFont(new Font("Arial", Font.ITALIC,30));
+        g2D.drawString("CAUGHT FISH!", 35, 100);
+    }
+
+    // MODIFIES: g2D
+    // EFFECTS: if the letter is not null, draws the fish's letter
     public void drawLetter(Graphics2D g2D) {
         if (letter != '\u0000') {
-            // Draw letter
             g2D.setColor(Color.BLACK);
             g2D.setFont(new Font("Arial", Font.BOLD, 20));
             g2D.drawString(String.valueOf(letter), 288, 180);
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: g2D
     // EFFECTS: draws bubbles
     public void drawBubbles(Graphics2D g2D) {
         g2D.setColor(Color.white);
@@ -71,7 +86,7 @@ public class FishDrawing extends JPanel {
         g2D.drawOval(280, 138, 12, 12);
     }
 
-    // MODIFIES: this
+    // MODIFIES: g2D
     // EFFECTS: draws fish body
     public void drawBody(Graphics2D g2D) {
         Color startColor = new Color(72, 36, 6, 221);
@@ -88,7 +103,7 @@ public class FishDrawing extends JPanel {
     }
 
 
-    // MODIFIES: this
+    // MODIFIES: g2D
     // EFFECTS: draws fishtail
     public void drawTail(Graphics2D g2D) {
         g2D.setColor(new Color(213, 112, 26, 221));
@@ -104,7 +119,7 @@ public class FishDrawing extends JPanel {
         g2D.fillPolygon(xcoords2, ycoords2, n2);
     }
 
-    // MODIFIES: this
+    // MODIFIES: g2D
     // EFFECTS: draws fishing rod
     public void drawFishingRod(Graphics2D g2D) {
         g2D.setColor(new Color(91, 64, 27));

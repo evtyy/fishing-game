@@ -87,7 +87,7 @@ public class FishesTest {
         fishList.addFish(f1);
         fishList.addFish(f2);
         fishList.addFish(f3);
-        fishList.getLargest();
+        fishList.setLargest();
         assertEquals(f3, fishList.getLargest());
     }
 
@@ -97,7 +97,7 @@ public class FishesTest {
         fishList.addFish(f2);
         fishList.addFish(f3);
         assertFalse(fishList.isLargestCaught());
-        fishList.getLargest(); // sets largest
+        fishList.setLargest();
         assertTrue(fishList.isLargestCaught());
     }
 

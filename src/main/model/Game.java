@@ -12,17 +12,17 @@ public class Game {
     private static final int MIN_WEIGHT = 1;
     private static final int MAX_WEIGHT = 30;
 
-    // EFFECTS: constructs a game with a pond of fishes of random weights
+    // EFFECTS: constructs a game with a pond of fishes with random weights and marks the largest fish
     public Game() {
         randomWeights = generateRandomIntegers(TOTAL_FISH, MIN_WEIGHT, MAX_WEIGHT);
         fishesTotal = new Fishes();
 
         initFishes();
         setRandomWeights();
-        fishesTotal.getLargest(); // marks the largest fish
+        fishesTotal.setLargest();
     }
 
-    // MODIFIES: this
+    // MODIFIES: fishesTotal
     // EFFECTS: creates a list of fish of size TOTAL_FISH and assigns a random char
     public void initFishes() {
         for (int i = 0; i < TOTAL_FISH; i++) {

@@ -16,10 +16,9 @@ public class TerminalGame {
 
     private Scanner input;
     private Game game;
-    private TotalRounds totalRounds;
+    private static TotalRounds totalRounds = new TotalRounds();
     private RoundSummary roundSummary;
     private Fishes fishesCaught;
-    private boolean playAgain;
     private boolean fishReleased;
 
     private static final int MAX_TRIES = 3;
@@ -31,13 +30,12 @@ public class TerminalGame {
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
         fishesCaught = new Fishes();
-        totalRounds = new TotalRounds();
         run();
     }
 
     // EFFECTS: initializes the fishes with random weights and chars in the pond
     public void newGame() {
-        playAgain = true;
+        boolean playAgain = true;
 
         while (playAgain) {
             game = new Game();

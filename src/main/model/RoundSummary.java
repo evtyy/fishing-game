@@ -12,7 +12,7 @@ public class RoundSummary {
 
 
     // EFFECTS: constructs a round summary with given Fishes and roundSummary; initializes empty list of fish
-    //          left in pond, isLargestCaught as false, and numFishCaught as 0
+    //          left in pond, isLargestCaught as false
     public RoundSummary(Fishes fishes, String roundSummary) {
         this.fishCaughtThisRound = fishes;
         this.roundSummary = roundSummary;
@@ -51,11 +51,14 @@ public class RoundSummary {
     }
 
 
+    // MODIFIES: this
     // EFFECTS: returns true if largest is in list of fish caught; false otherwise
     public boolean isLargestCaught() {
         for (Fish f: fishCaughtThisRound.getFishList()) {
             if (f.isLargest()) {
                 setLargestCaught();
+                EventLog.getInstance().logEvent(new Event("Largest fish caught with weight: "
+                        + f.getWeight() + " lb"));
                 return true;
             }
         }
