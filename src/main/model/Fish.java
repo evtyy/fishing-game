@@ -9,7 +9,7 @@ public class Fish {
     private char letter;
 
     // constructor for testing
-    // EFFECTS: constructs a fish with given letter
+    // EFFECTS: constructs a fish with given letter, 0 as weight and not largest
     public Fish(char letter) {
         this.letter = letter;
         this.weight = 0;

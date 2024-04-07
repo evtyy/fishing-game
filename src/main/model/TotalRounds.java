@@ -69,7 +69,11 @@ public class TotalRounds {
 
 
 
-    //getters
+    // MODIFIES: fishCaughtAllRounds
+    // EFFECTS: returns fishCaughtAllRounds: for each RoundSummary in roundSummaries,
+    //          if fishCaughtAllRounds doesn't contain fishesCaught that round,
+    //          add fishesCaught to fishCaughtAllRounds;
+    //          otherwise nothing
     public List<Fishes> getFishCaughtAllRounds() {
         for (RoundSummary r: roundSummaries) {
             Fishes fishesCaught = r.getFishCaughtThisRound();
@@ -80,6 +84,8 @@ public class TotalRounds {
         return fishCaughtAllRounds;
     }
 
+    // MODIFIES: this
+    // EFFECTS: calculate and return the number of fish caught across all rounds
     public int getNumFishCaughtAllRounds() {
         int sum = 0;
         for (RoundSummary r: roundSummaries) {
@@ -88,6 +94,7 @@ public class TotalRounds {
         return sum;
     }
 
+    // getters
     public List<RoundSummary> getRoundSummaries() {
         return roundSummaries;
     }
@@ -104,7 +111,7 @@ public class TotalRounds {
         return avgTotalWeight;
     }
 
-    //setters
+    // setters
     public void setLargestCaughtPercentage(double percentage) {
         this.largestCaughtPercentage = percentage;
     }

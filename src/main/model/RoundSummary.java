@@ -57,8 +57,6 @@ public class RoundSummary {
         for (Fish f: fishCaughtThisRound.getFishList()) {
             if (f.isLargest()) {
                 setLargestCaught();
-                EventLog.getInstance().logEvent(new Event("Largest fish caught with weight: "
-                        + f.getWeight() + " lb"));
                 return true;
             }
         }
