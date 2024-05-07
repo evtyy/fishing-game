@@ -1,183 +1,120 @@
 {"round summaries": [
     {
-        "summary": "Round Summary: Date caught: Sat Apr 06 19:53:50 PDT 2024 Largest fish was caught: false Total weight: 59 lb\nFish caught with weight: 28 lb\nFish caught with weight: 2 lb\nFish caught with weight: 29 lb\n",
+        "summary": "Round Summary: Date caught: Wed Apr 10 02:04:44 PDT 2024 Largest fish was caught: true Total weight: 56 lb\nFish caught with weight: 27 lb\nFish caught with weight: 6 lb\nFish caught with weight: 23 lb\n",
         "fishes caught": {
-            "dateCaught": "Sat Apr 06 19:53:50 PDT 2024",
-            "totalWeight": 118,
+            "dateCaught": "Wed Apr 10 02:04:44 PDT 2024",
+            "totalWeight": 56,
             "fishes": [
                 {
-                    "letter": "h",
-                    "weight": 28,
-                    "isLargest": false
+                    "letter": "m",
+                    "weight": 27,
+                    "isLargest": true
                 },
                 {
-                    "letter": "d",
-                    "weight": 2,
-                    "isLargest": false
-                },
-                {
-                    "letter": "e",
-                    "weight": 29,
-                    "isLargest": false
-                }
-            ]
-        },
-        "fish left in pond": [
-            {
-                "letter": "c",
-                "weight": 8,
-                "isLargest": false
-            },
-            {
-                "letter": "s",
-                "weight": 12,
-                "isLargest": false
-            },
-            {
-                "letter": "n",
-                "weight": 15,
-                "isLargest": false
-            },
-            {
-                "letter": "x",
-                "weight": 17,
-                "isLargest": false
-            },
-            {
-                "letter": "a",
-                "weight": 18,
-                "isLargest": false
-            },
-            {
-                "letter": "r",
-                "weight": 22,
-                "isLargest": false
-            },
-            {
-                "letter": "g",
-                "weight": 30,
-                "isLargest": true
-            }
-        ]
-    },
-    {
-        "summary": "Round Summary: Date caught: Sat Apr 06 19:54:00 PDT 2024 Largest fish was caught: false Total weight: 35 lb\nFish caught with weight: 3 lb\nFish caught with weight: 26 lb\nFish caught with weight: 6 lb\n",
-        "fishes caught": {
-            "dateCaught": "Sat Apr 06 19:54:00 PDT 2024",
-            "totalWeight": 70,
-            "fishes": [
-                {
-                    "letter": "t",
-                    "weight": 3,
-                    "isLargest": false
-                },
-                {
-                    "letter": "f",
-                    "weight": 26,
-                    "isLargest": false
-                },
-                {
-                    "letter": "d",
+                    "letter": "a",
                     "weight": 6,
                     "isLargest": false
+                },
+                {
+                    "letter": "u",
+                    "weight": 23,
+                    "isLargest": false
                 }
             ]
         },
         "fish left in pond": [
             {
-                "letter": "s",
+                "letter": "p",
+                "weight": 1,
+                "isLargest": false
+            },
+            {
+                "letter": "b",
+                "weight": 2,
+                "isLargest": false
+            },
+            {
+                "letter": "w",
                 "weight": 4,
                 "isLargest": false
             },
             {
-                "letter": "s",
-                "weight": 8,
-                "isLargest": false
-            },
-            {
-                "letter": "z",
+                "letter": "p",
                 "weight": 10,
                 "isLargest": false
             },
             {
-                "letter": "t",
+                "letter": "x",
+                "weight": 15,
+                "isLargest": false
+            },
+            {
+                "letter": "e",
+                "weight": 21,
+                "isLargest": false
+            },
+            {
+                "letter": "l",
+                "weight": 22,
+                "isLargest": false
+            }
+        ]
+    },
+    {
+        "summary": "Round Summary: Date caught: Wed Apr 10 02:05:02 PDT 2024 Largest fish was caught: false Total weight: 28 lb\nFish caught with weight: 1 lb\nFish caught with weight: 27 lb\n",
+        "fishes caught": {
+            "dateCaught": "Wed Apr 10 02:05:02 PDT 2024",
+            "totalWeight": 27,
+            "fishes": [{
+                "letter": "g",
+                "weight": 27,
+                "isLargest": false
+            }]
+        },
+        "fish left in pond": [
+            {
+                "letter": "a",
+                "weight": 4,
+                "isLargest": false
+            },
+            {
+                "letter": "x",
+                "weight": 7,
+                "isLargest": false
+            },
+            {
+                "letter": "v",
+                "weight": 11,
+                "isLargest": false
+            },
+            {
+                "letter": "q",
                 "weight": 12,
                 "isLargest": false
             },
             {
                 "letter": "m",
-                "weight": 17,
+                "weight": 13,
                 "isLargest": false
             },
             {
-                "letter": "j",
-                "weight": 27,
+                "letter": "c",
+                "weight": 15,
                 "isLargest": false
             },
             {
-                "letter": "v",
-                "weight": 28,
-                "isLargest": true
-            }
-        ]
-    },
-    {
-        "summary": "Round Summary: Date caught: Sat Apr 06 23:49:54 PDT 2024 Largest fish was caught: true Total weight: 60 lb\nFish caught with weight: 22 lb\nFish caught with weight: 18 lb\nFish caught with weight: 20 lb\n",
-        "fishes caught": {
-            "dateCaught": "Sat Apr 06 23:49:54 PDT 2024",
-            "totalWeight": 42,
-            "fishes": [
-                {
-                    "letter": "w",
-                    "weight": 22,
-                    "isLargest": true
-                },
-                {
-                    "letter": "e",
-                    "weight": 20,
-                    "isLargest": false
-                }
-            ]
-        },
-        "fish left in pond": [
-            {
-                "letter": "y",
-                "weight": 3,
-                "isLargest": false
-            },
-            {
-                "letter": "x",
-                "weight": 4,
-                "isLargest": false
-            },
-            {
-                "letter": "d",
-                "weight": 5,
-                "isLargest": false
-            },
-            {
-                "letter": "l",
-                "weight": 6,
-                "isLargest": false
-            },
-            {
-                "letter": "o",
-                "weight": 7,
-                "isLargest": false
-            },
-            {
-                "letter": "t",
-                "weight": 12,
-                "isLargest": false
-            },
-            {
-                "letter": "r",
+                "letter": "k",
                 "weight": 16,
                 "isLargest": false
             },
             {
-                "letter": "w",
-                "weight": 18,
+                "letter": "p",
+                "weight": 29,
+                "isLargest": true
+            },
+            {
+                "letter": "c",
+                "weight": 1,
                 "isLargest": false
             }
         ]

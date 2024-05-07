@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.util.*;
 
 // Represents the list of fishes caught in one round, with total weight and date caught
-public class Fishes {
+public class Fishes implements Iterable<Fish> {
     private List<Fish> fishList;
     private Fish largestFish;
     private int totalWeight;
@@ -121,4 +121,8 @@ public class Fishes {
     }
 
 
+    @Override
+    public Iterator<Fish> iterator() {
+        return fishList.iterator();
+    }
 }

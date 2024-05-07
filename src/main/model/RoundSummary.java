@@ -54,7 +54,7 @@ public class RoundSummary {
     // MODIFIES: this
     // EFFECTS: returns true if largest is in list of fish caught; false otherwise
     public boolean isLargestCaught() {
-        for (Fish f: fishCaughtThisRound.getFishList()) {
+        for (Fish f: fishCaughtThisRound) {
             if (f.isLargest()) {
                 setLargestCaught();
                 return true;

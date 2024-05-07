@@ -1,9 +1,11 @@
 package ui.gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 // represents a JPanel of CardLayout that holds JPanels for game, load game, and instructions
 // references CardLayoutDemo https://docs.oracle.com/javase%2Ftutorial%2Fuiswing%2F%2F/layout/card.html
@@ -22,6 +24,8 @@ public class ParentPanel extends JPanel implements ActionListener {
     public ParentPanel() {
         setLayout(new BorderLayout());
 
+
+
         newButton = new JButton("new game");
         loadButton = new JButton("load game");
         instructionsButton = new JButton("how to play");
@@ -37,6 +41,9 @@ public class ParentPanel extends JPanel implements ActionListener {
         cardLayout = (CardLayout) cards.getLayout();
 
         JPanel buttonPanel = initButtonPanel();
+        ImageIcon icon = new ImageIcon("./data/fish.png");
+        JLabel picLabel = new JLabel(icon);
+        buttonPanel.add(picLabel);
 
         // load game panel
         loadGamePanel = createCard("load game card");

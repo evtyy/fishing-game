@@ -68,6 +68,7 @@ public class NewGamePanel extends JPanel {
                         fishSwamAway();
                     }
                 }
+                userInputField.setText("");
                 catchButtonCounter++;
                 if (catchButtonCounter == MAX_TRIES) {
                     gameOverWindow();
@@ -158,7 +159,7 @@ public class NewGamePanel extends JPanel {
                 .append("Date caught: ").append(fishesCaught.getDateCaught())
                 .append(" Largest fish was caught: ").append(fishesCaught.isLargestCaught())
                 .append(" Total weight: ").append(fishesCaught.getTotalWeight()).append(" lb\n");
-        for (Fish f : fishesCaught.getFishList()) {
+        for (Fish f : fishesCaught) {
             summary.append("Fish caught with weight: ").append(f.getWeight()).append(" lb\n");
         }
         RoundSummary roundSummary = new RoundSummary(fishesCaught, summary.toString());
@@ -171,8 +172,8 @@ public class NewGamePanel extends JPanel {
     private void gameOverWindow() {
         totalRounds.addRoundSummary(getRoundSummary());
         JPanel messagePanel = new JPanel(new BorderLayout());
-        JLabel gameOverLabel = new JLabel("game over!");
-        messagePanel.add(gameOverLabel, BorderLayout.NORTH);
+        //JLabel gameOverLabel = new JLabel("game over!");
+        //messagePanel.add(gameOverLabel, BorderLayout.NORTH);
 
         // summary of the fish caught
         JTextArea summaryTextArea = initSummary();
@@ -180,11 +181,17 @@ public class NewGamePanel extends JPanel {
         scrollPane.setPreferredSize(new Dimension(200, 100));
         messagePanel.add(scrollPane, BorderLayout.CENTER);
 
-        JLabel releaseFishLabel = new JLabel("release fish?");
+        JLabel releaseFishLabel = new JLabel("Release fish?");
         messagePanel.add(releaseFishLabel, BorderLayout.SOUTH);
 
+        ImageIcon originalIcon = new ImageIcon("./data/gameover.png");
+        Image originalImage = originalIcon.getImage();
+        Image resizedImage = originalImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+
         int option = JOptionPane.showConfirmDialog(null, messagePanel, "Game Over",
-                JOptionPane.YES_NO_OPTION);
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, resizedIcon);
 
         if (option == JOptionPane.YES_OPTION) {
             showReleaseFishOption();
@@ -199,10 +206,16 @@ public class NewGamePanel extends JPanel {
         JPanel messagePanel = new JPanel();
         messagePanel.setLayout(new BorderLayout());
 
-        JLabel saveGameLabel = new JLabel("save game?");
+        JLabel saveGameLabel = new JLabel("Save game?");
         messagePanel.add(saveGameLabel, BorderLayout.NORTH);
 
-        int option = JOptionPane.showConfirmDialog(null, messagePanel, "Save game option", JOptionPane.YES_NO_OPTION);
+        ImageIcon originalIcon = new ImageIcon("./data/savegame.png");
+        Image originalImage = originalIcon.getImage();
+        Image resizedImage = originalImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+        int option = JOptionPane.showConfirmDialog(null, messagePanel, "",
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, resizedIcon);
 
         if (option == JOptionPane.YES_OPTION) {
             saveGame();
@@ -241,11 +254,11 @@ public class NewGamePanel extends JPanel {
     // MODIFIES: this, releaseFishFrame, fishPanel
     // EFFECTS: generates and displays a JFrame with checkboxes for releasing fish
     private void showReleaseFishOption() {
-        releaseFishFrame = new JFrame("release fish");
+        releaseFishFrame = new JFrame("Release fish");
         releaseFishFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         fishPanel = new JPanel(new GridLayout(0, 1));
-        for (Fish f : fishesCaught.getFishList()) {
+        for (Fish f : fishesCaught) {
             JCheckBox checkBox = new JCheckBox("Fish letter: " + f.getLetter() + ", Weight: " + f.getWeight());
             fishPanel.add(checkBox);
         }
@@ -311,8 +324,13 @@ public class NewGamePanel extends JPanel {
     // MODIFIES: this
     // EFFECTS: shows fishes caught
     private void showSummary() {
+        ImageIcon originalIcon = new ImageIcon("./data/summary.png");
+        Image originalImage = originalIcon.getImage();
+        Image resizedImage = originalImage.getScaledInstance(85, 85, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
         JOptionPane.showMessageDialog(null, initSummary(), "Summary",
-                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE, resizedIcon);
 
     }
 
@@ -322,7 +340,6 @@ public class NewGamePanel extends JPanel {
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
 
-        textArea.append("Summary: \n");
         if (!gameLoaded) {
             for (Fish f : fishesCaught.getFishList()) {
                 textArea.append("Fish letter: " + f.getLetter() + ", Weight: " + f.getWeight() + "\n");
@@ -360,11 +377,16 @@ public class NewGamePanel extends JPanel {
         JPanel messagePanel = new JPanel();
         messagePanel.setLayout(new BorderLayout());
 
-        JLabel playAgainLabel = new JLabel("play again?");
+        JLabel playAgainLabel = new JLabel("Play again?");
         messagePanel.add(playAgainLabel, BorderLayout.NORTH);
 
+        ImageIcon originalIcon = new ImageIcon("./data/playagain.png");
+        Image originalImage = originalIcon.getImage();
+        Image resizedImage = originalImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
         int option = JOptionPane.showConfirmDialog(null, messagePanel,
-                "Play again option", JOptionPane.YES_NO_OPTION);
+                "", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, resizedIcon);
         if (option == JOptionPane.YES_OPTION) {
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.getContentPane().removeAll();
