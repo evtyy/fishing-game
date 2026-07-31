@@ -6,6 +6,7 @@ A fishing simulation where players catch fish by typing randomly generated keybo
 
 <img width="600" alt="fishing-demo" src="https://github.com/user-attachments/assets/4837aea5-f602-4662-8a98-347549d45a54" />
 
+**Full Demo Video:** [Watch the full demo](https://youtube.com/shorts/Kqqc743Hm70)
 
 ## Overview
 
